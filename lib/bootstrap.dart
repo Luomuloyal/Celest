@@ -9,6 +9,10 @@ Future<void> bootstrap() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.configureDependencies();
   await di.sl<ThemeController>().load();
-  await di.sl<NotificationService>().initialize();
+  try {
+    await di.sl<NotificationService>().initialize();
+  } catch (_) {
+    // Keep app startup resilient even if native notification setup fails.
+  }
   runApp(const CelestApp());
 }

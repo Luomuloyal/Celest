@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "appTitle": "Celest",
+  "navHome": "Home",
+  "navCompetition": "Competition",
+  "navWorkspace": "Workspace",
+  "navResources": "Resources",
+  "navProfile": "Profile",
+  "authTitle": "Sign In",
+  "pagePlaceholder": "{title} page placeholder",
+  "@pagePlaceholder": {
+    "description": "Placeholder copy shown in unfinished pages",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  }
+}

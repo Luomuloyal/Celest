@@ -48,7 +48,9 @@ class AppTimelineItem extends StatelessWidget {
                   Expanded(
                     child: Container(
                       width: 1.5,
-                      margin: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
+                      margin: const EdgeInsets.symmetric(
+                        vertical: AppSpacing.xs,
+                      ),
                       color: lineColor,
                     ),
                   ),

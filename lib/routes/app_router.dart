@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../core/common/widgets/app_placeholder_page.dart';
 import '../core/common/widgets/app_shell.dart';
 import '../features/auth/presentation/pages/auth_page.dart';
+import '../l10n/l10n.dart';
 import 'route_guard.dart';
 
 class AppRouter {
@@ -21,32 +22,32 @@ class AppRouter {
         routes: <RouteBase>[
           GoRoute(
             path: '/home',
-            pageBuilder: (context, state) => const NoTransitionPage<void>(
-              child: AppPlaceholderPage(title: '首页'),
+            pageBuilder: (context, state) => NoTransitionPage<void>(
+              child: AppPlaceholderPage(title: context.l10n.navHome),
             ),
           ),
           GoRoute(
             path: '/competition',
-            pageBuilder: (context, state) => const NoTransitionPage<void>(
-              child: AppPlaceholderPage(title: '赛事'),
+            pageBuilder: (context, state) => NoTransitionPage<void>(
+              child: AppPlaceholderPage(title: context.l10n.navCompetition),
             ),
           ),
           GoRoute(
             path: '/workspace',
-            pageBuilder: (context, state) => const NoTransitionPage<void>(
-              child: AppPlaceholderPage(title: '工作区'),
+            pageBuilder: (context, state) => NoTransitionPage<void>(
+              child: AppPlaceholderPage(title: context.l10n.navWorkspace),
             ),
           ),
           GoRoute(
             path: '/resources',
-            pageBuilder: (context, state) => const NoTransitionPage<void>(
-              child: AppPlaceholderPage(title: '资源库'),
+            pageBuilder: (context, state) => NoTransitionPage<void>(
+              child: AppPlaceholderPage(title: context.l10n.navResources),
             ),
           ),
           GoRoute(
             path: '/profile',
-            pageBuilder: (context, state) => const NoTransitionPage<void>(
-              child: AppPlaceholderPage(title: '我的'),
+            pageBuilder: (context, state) => NoTransitionPage<void>(
+              child: AppPlaceholderPage(title: context.l10n.navProfile),
             ),
           ),
         ],

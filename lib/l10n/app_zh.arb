@@ -1,4 +1,19 @@
 {
   "@@locale": "zh",
-  "appName": "Celest"
+  "appTitle": "Celest",
+  "navHome": "首页",
+  "navCompetition": "赛事",
+  "navWorkspace": "工作区",
+  "navResources": "资源库",
+  "navProfile": "我的",
+  "authTitle": "登录",
+  "pagePlaceholder": "{title} 页面占位",
+  "@pagePlaceholder": {
+    "description": "未完成页面的占位提示",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  }
 }

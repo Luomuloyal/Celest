@@ -28,7 +28,7 @@ class DashboardPage extends StatelessWidget {
           radius: 16,
           child: Icon(Icons.person, size: 18),
         ),
-        title: '赛育通',
+        title: 'Celest',
         trailing: _TopBarActions(
           onThemeToggle: () => sl<ThemeController>().toggle(),
           onNotify: () {

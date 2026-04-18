@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../l10n/l10n.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/theme_context_extension.dart';
 
@@ -27,7 +28,7 @@ class AppPlaceholderPage extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.sm),
           Text(
-            '$title 页面占位',
+            context.l10n.pagePlaceholder(title),
             style: context.textStyles.bodyMedium?.copyWith(
               color: context.colors.onSurfaceVariant,
             ),

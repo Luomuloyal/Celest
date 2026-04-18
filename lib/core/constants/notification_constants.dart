@@ -5,7 +5,7 @@ abstract final class NotificationConstants {
   static const String defaultChannelName = 'Celest General';
   static const String defaultChannelDescription = 'Celest app notifications';
 
-  static const String androidSmallIcon = 'ic_launcher';
+  static const String androidSmallIcon = 'app_notification_icon';
   static const String linuxDefaultActionName = 'Open notification';
 
   static const String windowsAppName = AppKeys.appName;
