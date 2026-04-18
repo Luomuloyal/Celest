@@ -5,6 +5,20 @@ class RouteGuard {
   const RouteGuard._();
 
   static String? redirect(BuildContext context, GoRouterState state) {
+    final path = state.uri.path;
+
+    if (path == '/') {
+      return '/workspace';
+    }
+
+    if (path == '/dashboard') {
+      return '/workspace';
+    }
+
+    if (path == '/team') {
+      return '/resources';
+    }
+
     return null;
   }
 }
