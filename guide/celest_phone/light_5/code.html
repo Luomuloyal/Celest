@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>赛育通 - 我的</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#fcba5e",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#2d4a59",
+                        "inverse-surface": "#2d3133",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#754b00",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#835500",
+                        "error": "#ba1a1a",
+                        "primary": "#006686",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "primary-fixed": "#c0e8ff",
+                        "on-primary-fixed-variant": "#004d66",
+                        "on-primary-fixed": "#001e2b",
+                        "on-primary-container": "#005b78",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#001e2b",
+                        "error-container": "#ffdad6",
+                        "secondary": "#456272",
+                        "tertiary-container": "#febc60",
+                        "surface-container": "#eceef0",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3f484e",
+                        "secondary-fixed": "#c8e7f9",
+                        "primary-fixed-dim": "#7bd1fa",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffddb5",
+                        "surface-tint": "#006686",
+                        "inverse-primary": "#7bd1fa",
+                        "on-tertiary-fixed": "#2a1800",
+                        "secondary-container": "#c5e4f6",
+                        "outline": "#6f787e",
+                        "surface": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#496776",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#bec8ce",
+                        "on-tertiary-fixed-variant": "#633f00",
+                        "primary-container": "#7dd3fc",
+                        "secondary-fixed-dim": "#accbdd",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter", "PingFang SC", "Noto Sans SC", "sans-serif"],
+                        "body": ["Inter", "PingFang SC", "Noto Sans SC", "sans-serif"],
+                        "label": ["Inter", "PingFang SC", "Noto Sans SC", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', 'PingFang SC', 'Noto Sans SC', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased pb-24 md:pb-0 pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-lg shadow-[0_4px_20px_rgba(0,102,134,0.04)] bg-[#f2f4f6] flex justify-between items-center px-4 h-16 w-full font-['Inter','PingFang_SC'] text-on-surface leading-relaxed">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="close up portrait of a young professional in a light blue environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn0LWGqFfOoq7-MIM0dV2QJJc-uX2VcSjX11MZDrP-aDPqvpDeEkzRRtiCisefhN_H1KCjO88aEoVGsCNtG9G6zwfmGKY11PaxS4dKs-hOoeH7cb7ze1QhpYQ2fRLUz1BULAqnLf8n2ON5x32MDt-MctnUY9zqY0uVetZd_rpJ5TI3Fre8VBkkZur6ksjArXcZqwlgnVXYK6l5NPqZEhs08oneWRIcU6yticFRwcRGQ2H5GFKMpIvPhZ48TFAhuNRqH0hZdAt4toEx"/>
+</div>
+<span class="text-xl font-bold tracking-tight text-[#006686]">赛育通</span>
+</div>
+<button class="active:scale-95 transition-transform duration-200 hover:bg-[#7dd3fc]/10 transition-colors duration-200 p-2 rounded-full text-[#006686]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="max-w-4xl mx-auto px-4 md:px-8 pt-6 space-y-8">
+<!-- User Profile Hero (Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Profile Info Card -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-xl p-8 relative overflow-hidden flex flex-col justify-center">
+<!-- Signature Texture Gradient Background -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary to-primary-container opacity-10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+<div class="flex items-center gap-6 relative z-10">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface shadow-[0_12px_40px_rgba(0,102,134,0.06)]">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="close up portrait of a young professional in a light blue environment, high quality" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtb92mBJxQke3St8RF6rUr0JCJs89Zy6qcabjYr8GkscfoP7P0anZAMnptmgTKAKgMQMlzWlikE9CbWVmv9y52g34ag1yG_Obt331pViUrQB0Dju8rrM0NNe0-10OyKO7OO5yNdcTYS2_dH_QnOMRTYW10gInkCDGXuFfmH87Xye7A3JwYXuEvtE9yNeMbPFpQgMaCZriux8o9RmEC62y-ZVtypT_QySvRV62BQ2vemksGqeX6QZrBWoC7AOCJn_5G3SGcO09vTZAF"/>
+</div>
+<div>
+<h1 class="text-2xl font-bold text-on-surface tracking-tight mb-1">张伟 (Zhang Wei)</h1>
+<p class="text-on-surface-variant text-sm mb-3">清华大学 | 计算机科学与技术系</p>
+<div class="flex gap-2">
+<span class="bg-primary-container/20 text-on-primary-container px-3 py-1 rounded-md text-xs font-medium">指导教师</span>
+<span class="bg-primary-container/20 text-on-primary-container px-3 py-1 rounded-md text-xs font-medium">高级认证</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats/Assets Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col justify-between shadow-[0_12px_40px_rgba(0,102,134,0.06)]">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-sm font-semibold text-on-surface-variant">我的资产</h2>
+<span class="material-symbols-outlined text-primary text-xl">account_balance_wallet</span>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-3xl font-bold text-on-surface mb-1">1,250</p>
+<p class="text-xs text-on-surface-variant">积分余额</p>
+</div>
+<div class="h-px w-full bg-outline-variant/15"></div>
+<div class="flex justify-between items-center">
+<div>
+<p class="text-lg font-bold text-on-surface">3</p>
+<p class="text-xs text-on-surface-variant">优惠券</p>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-fixed-dim text-on-primary px-4 py-1.5 rounded-full text-xs font-medium hover:opacity-90 transition-opacity">
+                            去兑换
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Competition Archive (Glassmorphic & Asymmetric) -->
+<section class="space-y-6">
+<h2 class="text-lg font-bold text-on-surface tracking-tight">竞赛档案</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Archive Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 relative flex flex-col">
+<div class="absolute left-0 top-6 bottom-6 w-1 bg-primary-fixed rounded-r-full"></div>
+<div class="pl-4">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-primary-container/20 text-on-primary-container px-2.5 py-1 rounded-md text-xs font-medium">进行中</span>
+<span class="text-xs text-on-surface-variant">2023-11 至今</span>
+</div>
+<h3 class="text-base font-bold text-on-surface mb-2">全国大学生人工智能挑战赛</h3>
+<p class="text-sm text-on-surface-variant mb-4 line-clamp-2">指导项目《基于深度学习的智能医疗辅助诊断系统》进入全国总决赛。</p>
+<div class="mt-auto pt-4 flex items-center justify-between">
+<span class="text-xs text-primary font-medium">查看详情</span>
+<span class="material-symbols-outlined text-primary text-sm">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+<!-- Archive Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 relative flex flex-col">
+<div class="absolute left-0 top-6 bottom-6 w-1 bg-surface-container-highest rounded-r-full"></div>
+<div class="pl-4">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-surface-container-highest text-on-surface-variant px-2.5 py-1 rounded-md text-xs font-medium">已完结</span>
+<span class="text-xs text-on-surface-variant">2023-05</span>
+</div>
+<h3 class="text-base font-bold text-on-surface mb-2">"创青春"全国大学生创业大赛</h3>
+<p class="text-sm text-on-surface-variant mb-4 line-clamp-2">指导团队荣获全国银奖，项目成果已成功孵化。</p>
+<div class="mt-auto pt-4 flex items-center justify-between">
+<span class="text-xs text-on-surface-variant font-medium">查看证书</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">workspace_premium</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Settings List -->
+<section class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_12px_40px_rgba(0,102,134,0.04)] mb-8">
+<div class="p-6 pb-2">
+<h2 class="text-lg font-bold text-on-surface tracking-tight mb-4">设置与帮助</h2>
+</div>
+<div class="flex flex-col">
+<!-- Item 1 -->
+<a class="flex items-center justify-between p-4 px-6 hover:bg-surface-container-low transition-colors duration-200 group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications_active</span>
+</div>
+<span class="text-sm font-medium text-on-surface">消息通知</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-sm">chevron_right</span>
+</a>
+<!-- Divider -->
+<div class="h-px bg-outline-variant/15 mx-6"></div>
+<!-- Item 2 -->
+<a class="flex items-center justify-between p-4 px-6 hover:bg-surface-container-low transition-colors duration-200 group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shield_person</span>
+</div>
+<span class="text-sm font-medium text-on-surface">账号与安全</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-sm">chevron_right</span>
+</a>
+<!-- Divider -->
+<div class="h-px bg-outline-variant/15 mx-6"></div>
+<!-- Item 3 -->
+<a class="flex items-center justify-between p-4 px-6 hover:bg-surface-container-low transition-colors duration-200 group" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help_center</span>
+</div>
+<span class="text-sm font-medium text-on-surface">帮助与反馈</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-sm">chevron_right</span>
+</a>
+</div>
+<div class="p-6 pt-4 text-center">
+<button class="w-full bg-surface-container-high text-on-primary-container py-3 rounded-full text-sm font-medium hover:bg-surface-variant transition-colors duration-200">
+                    退出登录
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-[24px] bg-[#ffffff]/80 backdrop-blur-xl border-t border-[#bec8ce]/15 shadow-[0_-8px_30px_rgba(0,102,134,0.08)] flex justify-around items-center h-20 px-2 pb-safe w-full font-['Inter','PingFang_SC'] text-[10px] font-medium">
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">home</span>
+            首页
+        </a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">emoji_events</span>
+            赛事
+        </a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+            工作台
+        </a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">folder_open</span>
+            资源库
+        </a>
+<a class="flex flex-col items-center justify-center bg-[#7dd3fc]/30 text-[#006686] rounded-2xl px-3 py-1 active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+            我的
+        </a>
+</nav>
+</body></html>

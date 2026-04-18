@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>首页 - 赛育通</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', 'PingFang SC', 'Noto Sans SC', sans-serif; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#fcba5e",
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-fixed-variant": "#2d4a59",
+                    "inverse-surface": "#2d3133",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#754b00",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#835500",
+                    "error": "#ba1a1a",
+                    "primary": "#006686",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-surface": "#191c1e",
+                    "background": "#f7f9fb",
+                    "primary-fixed": "#c0e8ff",
+                    "on-primary-fixed-variant": "#004d66",
+                    "on-primary-fixed": "#001e2b",
+                    "on-primary-container": "#005b78",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#001e2b",
+                    "error-container": "#ffdad6",
+                    "secondary": "#456272",
+                    "tertiary-container": "#febc60",
+                    "surface-container": "#eceef0",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#3f484e",
+                    "secondary-fixed": "#c8e7f9",
+                    "primary-fixed-dim": "#7bd1fa",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffddb5",
+                    "surface-tint": "#006686",
+                    "inverse-primary": "#7bd1fa",
+                    "on-tertiary-fixed": "#2a1800",
+                    "secondary-container": "#c5e4f6",
+                    "outline": "#6f787e",
+                    "surface": "#f7f9fb",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-high": "#e6e8ea",
+                    "on-background": "#191c1e",
+                    "on-secondary-container": "#496776",
+                    "surface-container-low": "#f2f4f6",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#bec8ce",
+                    "on-tertiary-fixed-variant": "#633f00",
+                    "primary-container": "#7dd3fc",
+                    "secondary-fixed-dim": "#accbdd",
+                    "surface-variant": "#e0e3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased pb-24 md:pb-0 pt-16 md:pt-0">
+<!-- TopAppBar (Mobile) / Top Navigation (Desktop) -->
+<header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-lg border-b border-[#bec8ce]/15 shadow-[0_4px_20px_rgba(0,102,134,0.04)] hidden md:block">
+<div class="flex justify-between items-center px-6 h-16 max-w-7xl mx-auto w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-[#006686]">赛育通</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-[#006686] font-bold" href="#">首页</a>
+<a class="text-[#3f484e] hover:text-[#006686] transition-colors duration-200" href="#">赛事</a>
+<a class="text-[#3f484e] hover:text-[#006686] transition-colors duration-200" href="#">工作台</a>
+<a class="text-[#3f484e] hover:text-[#006686] transition-colors duration-200" href="#">资源库</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-[#7dd3fc]/10 rounded-full transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a young professional male looking forward" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCccfany-kvwD_TLovIiGs_tdWOgLTiI2l_8hN_HhxvxQiMPr4muiS95YOxpBEfD_wB2O7lhnEYbOYjEGB7MbAA-XaHP_vRkr9EHkD-ULA_eaxNYCObb4-j2yndAx8arEiUhdlQ93pmvbQEKNZGb_DNX4FVNOqNXlUN3rsbdbtJbEWLh5w-eu6J-TNd0--O4b1QgAlv6LaqYJp2ll9JRF6kb-ZH4C_oHIjZ_Z4Uc21wRGpa4lmTayy0AapkF3fNbfFoy8MMUNYLnkEh"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Mobile TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-lg shadow-[0_4px_20px_rgba(0,102,134,0.04)] md:hidden">
+<div class="flex justify-between items-center px-4 h-16 w-full">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a young professional male looking forward" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW_ndFIKdGpfp3H_NAs_BXIUT145iMm7MxEsRzcWu4elQKgg-ELKyneJ1K8RLoCJdoxJaE2ahzkeZ6zwjW2jtPpsJRFSqo9a90olwvgZnjUwNjZGoHcIRKF0xPQN7QqIX1y1_OwIk0M6EF15Xt4IvLA1NDxaBrf4sqKSrL7TlwFnEY297TzNIHBdDr5NIaAHc8TuXuy0p33BWsp-9adJBivLKGsSli69-KDYlgrWfQ8d_jzydkz303m4H1yOquSbeZeshcIUkht7EG"/>
+</div>
+<span class="text-xl font-bold tracking-tight text-[#006686]">赛育通</span>
+<button class="text-[#006686] active:scale-95 transition-transform duration-200 p-2">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 md:px-6 pt-6 md:pt-24 space-y-8">
+<!-- Welcome Hero Section -->
+<section class="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-primary to-primary-container p-8 md:p-12 shadow-[0_12px_40px_rgba(0,102,134,0.15)] text-on-primary">
+<div class="relative z-10 max-w-2xl">
+<h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">欢迎回来, Alex</h1>
+<p class="text-lg md:text-xl text-primary-fixed mb-8 opacity-90">准备好迎接新的挑战了吗？你的项目进度良好，继续保持。</p>
+<button class="bg-surface-container-lowest text-on-primary-container font-medium px-6 py-3 rounded-full hover:bg-surface-bright transition-colors active:scale-95 inline-flex items-center gap-2">
+                    查看我的工作台
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+<div class="absolute bottom-0 right-1/4 w-48 h-48 bg-primary-fixed/20 rounded-full blur-2xl translate-y-1/3"></div>
+</section>
+<!-- Main Content Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Competition Countdown -->
+<section class="col-span-1 md:col-span-2 bg-surface-container-lowest rounded-[24px] p-6 md:p-8 shadow-[0_4px_20px_rgba(0,102,134,0.04)] relative overflow-hidden group">
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-primary-container/20 text-on-primary-container text-xs font-medium mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                            报名中
+                        </div>
+<h2 class="text-2xl font-bold text-on-surface">全国创新挑战赛</h2>
+<p class="text-on-surface-variant text-sm mt-1">2024年度科技赛道省级复赛</p>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<div class="flex items-center gap-4 md:gap-8 relative z-10">
+<div class="text-center">
+<div class="text-3xl md:text-4xl font-black text-primary font-headline">12</div>
+<div class="text-xs text-on-surface-variant mt-1">天</div>
+</div>
+<div class="text-3xl font-light text-outline-variant">:</div>
+<div class="text-center">
+<div class="text-3xl md:text-4xl font-black text-primary font-headline">08</div>
+<div class="text-xs text-on-surface-variant mt-1">小时</div>
+</div>
+<div class="text-3xl font-light text-outline-variant">:</div>
+<div class="text-center">
+<div class="text-3xl md:text-4xl font-black text-primary font-headline">45</div>
+<div class="text-xs text-on-surface-variant mt-1">分钟</div>
+</div>
+</div>
+<div class="mt-8 flex gap-3 relative z-10">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-medium hover:bg-primary/90 transition-colors active:scale-95">立即提交作品</button>
+<button class="bg-surface-container-high text-on-surface px-6 py-2.5 rounded-full font-medium hover:bg-surface-container-highest transition-colors active:scale-95">查看详情</button>
+</div>
+<!-- Card Background Decorative -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-tl from-primary-container/30 to-transparent rounded-full blur-xl group-hover:scale-110 transition-transform duration-500"></div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-fixed"></div>
+</section>
+<!-- Quick Actions -->
+<section class="col-span-1 bg-surface-container-lowest rounded-[24px] p-6 shadow-[0_4px_20px_rgba(0,102,134,0.04)]">
+<h3 class="text-lg font-bold text-on-surface mb-4">快捷操作</h3>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center justify-center p-4 rounded-[16px] bg-surface-container-low hover:bg-surface-container transition-colors group">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-3 group-hover:bg-primary-container/40 transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="edit_document">edit_document</span>
+</div>
+<span class="text-sm font-medium text-on-surface">报名</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-[16px] bg-surface-container-low hover:bg-surface-container transition-colors group">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center mb-3 group-hover:bg-secondary-container/50 transition-colors">
+<span class="material-symbols-outlined text-secondary" data-icon="groups">groups</span>
+</div>
+<span class="text-sm font-medium text-on-surface">组队</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-[16px] bg-surface-container-low hover:bg-surface-container transition-colors group">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/30 flex items-center justify-center mb-3 group-hover:bg-tertiary-container/50 transition-colors">
+<span class="material-symbols-outlined text-tertiary" data-icon="smart_toy">smart_toy</span>
+</div>
+<span class="text-sm font-medium text-on-surface">AI导师</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-[16px] bg-surface-container-low hover:bg-surface-container transition-colors group">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-3 group-hover:bg-primary-container/40 transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="library_books">library_books</span>
+</div>
+<span class="text-sm font-medium text-on-surface">资源</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Secondary Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Live Updates -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 shadow-[0_4px_20px_rgba(0,102,134,0.04)]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold text-on-surface">实时动态</h3>
+<a class="text-sm text-primary hover:text-primary-container transition-colors" href="#">查看全部</a>
+</div>
+<div class="space-y-6">
+<!-- Update Item -->
+<div class="flex gap-4 relative">
+<div class="absolute left-[19px] top-8 bottom-[-24px] w-0.5 bg-outline-variant/20"></div>
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center flex-shrink-0 z-10">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="celebration">celebration</span>
+</div>
+<div>
+<p class="text-sm text-on-surface font-medium">团队 "星火计划" 成功晋级决赛</p>
+<p class="text-xs text-on-surface-variant mt-1">10分钟前 · 全国创新挑战赛</p>
+</div>
+</div>
+<!-- Update Item -->
+<div class="flex gap-4 relative">
+<div class="absolute left-[19px] top-8 bottom-[-24px] w-0.5 bg-outline-variant/20"></div>
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center flex-shrink-0 z-10">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="assignment">assignment</span>
+</div>
+<div>
+<p class="text-sm text-on-surface font-medium">导师李华对您的项目方案提出了新建议</p>
+<p class="text-xs text-on-surface-variant mt-1">2小时前 · 项目指导</p>
+</div>
+</div>
+<!-- Update Item -->
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center flex-shrink-0 z-10">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="event">event</span>
+</div>
+<div>
+<p class="text-sm text-on-surface font-medium">"数字乡村" 赛道报名即将截止</p>
+<p class="text-xs text-on-surface-variant mt-1">昨天 14:30 · 系统通知</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Benchmark Case -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 shadow-[0_4px_20px_rgba(0,102,134,0.04)] flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold text-on-surface">标杆案例</h3>
+<div class="px-2 py-1 bg-surface-container-low rounded text-xs text-on-surface-variant">AI科技赛道</div>
+</div>
+<div class="group cursor-pointer flex-1 flex flex-col">
+<div class="relative w-full h-48 rounded-[16px] overflow-hidden mb-4">
+<img alt="Benchmark Case" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="clean modern laboratory setting with a robotic arm operating on a glowing blue digital surface, high tech aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh82ly6GbsLjWs8ScWiCWDvQnRSDpttIGKNXAzazWAVS57UNSs_0NKcUWPz9WeIYriYo_tPG7drPKP4zuOfkWLc89x6-MXSRBIR46g0hKPmQ0oNlfS3Sej7M7_KSyWsPV-pNOYYIbGF4U39O5_tUc_gJiB2sMYXMslI67f8vWKOhmxj44gxj-ZkEF8W2SOBKwhvxk1ovKWmfyccJ7tQzoxBkTnaVtwQAG50umzEBAo4Ctpy3dDm55qP3OyK6Ty2QvK-fs1PuPEMVCp"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 text-on-primary">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-sm text-primary-fixed" data-icon="emoji_events">emoji_events</span>
+<span class="text-xs font-medium text-primary-fixed">2023年度金奖作品</span>
+</div>
+<h4 class="font-bold text-lg leading-tight">基于深度学习的智能生态监测系统</h4>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-2 mb-4 flex-1">该项目通过部署低功耗边缘计算节点，结合深度学习算法，实现了对自然保护区内珍稀物种的实时监测与行为分析，大幅提升了生态保护效率。</p>
+<div class="flex items-center gap-3">
+<img alt="Team Lead" class="w-6 h-6 rounded-full" data-alt="small circular portrait of a professional woman smiling slightly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuE_UmfVeWT2m-SQGWYacv20eY_u4PxANGEU-hmwwSj9KPORbL2-jFMbOxcsXhR7GNuYSdvkxkJFrQ2-G9nPqm3_69b28Ucq4zmlhAQy4XjfGr79gKHKg02eAzgSVZraO0yV7M_OUkHRLTct73EDD3EumAWX8gqIYY2X4gH1LAP86o2UXbZxlNeb8Ah-3Iwn04fR-euXG5KtUAgZu9isL5JYxXR0Hg5jcszLAxea16k_EEdwGf48ltbF90r-IFzRcFINTqehXgh8xz"/>
+<span class="text-xs text-on-surface-variant">由 "生态先锋" 团队主导</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[24px] bg-[#ffffff]/80 backdrop-blur-xl border-t border-[#bec8ce]/15 shadow-[0_-8px_30px_rgba(0,102,134,0.08)] md:hidden">
+<div class="flex justify-around items-center h-20 px-2 pb-safe w-full">
+<a class="flex flex-col items-center justify-center bg-[#7dd3fc]/30 text-[#006686] rounded-2xl px-3 py-1 active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="home" data-weight="fill">home</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">赛事</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">工作台</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">资源库</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">我的</span>
+</a>
+</div>
+</nav>
+</body></html>

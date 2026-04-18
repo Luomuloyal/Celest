@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>资源库 - 赛育通</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#fcba5e",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#2d4a59",
+                        "inverse-surface": "#2d3133",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#754b00",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#835500",
+                        "error": "#ba1a1a",
+                        "primary": "#006686",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "primary-fixed": "#c0e8ff",
+                        "on-primary-fixed-variant": "#004d66",
+                        "on-primary-fixed": "#001e2b",
+                        "on-primary-container": "#005b78",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#001e2b",
+                        "error-container": "#ffdad6",
+                        "secondary": "#456272",
+                        "tertiary-container": "#febc60",
+                        "surface-container": "#eceef0",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3f484e",
+                        "secondary-fixed": "#c8e7f9",
+                        "primary-fixed-dim": "#7bd1fa",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffddb5",
+                        "surface-tint": "#006686",
+                        "inverse-primary": "#7bd1fa",
+                        "on-tertiary-fixed": "#2a1800",
+                        "secondary-container": "#c5e4f6",
+                        "outline": "#6f787e",
+                        "surface": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#496776",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#bec8ce",
+                        "on-tertiary-fixed-variant": "#633f00",
+                        "primary-container": "#7dd3fc",
+                        "secondary-fixed-dim": "#accbdd",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter", "Noto Sans SC", "sans-serif"],
+                        "body": ["Inter", "Noto Sans SC", "sans-serif"],
+                        "label": ["Inter", "Noto Sans SC", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface pb-32 pt-20 antialiased overflow-x-hidden min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-lg shadow-[0_4px_20px_rgba(0,102,134,0.04)] bg-[#f2f4f6]">
+<div class="flex justify-between items-center px-4 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/40 flex items-center justify-center overflow-hidden border border-outline-variant/15">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional headshot of a young asian man with short hair wearing a crisp blue shirt against a light gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATV-H9fzT0vYsR1fDh7qgataFrS5retd_9QARM3bWuEq9Aip7sma9OcszfZpLyK4KhvqoXTIWG6VGUoF9PCzpN6rv1oPNsa-NjdBmL76ld4W7p3tFCCeu0Zy9igF0woI7wBF8Y1XZzul4HXePWwql2yxLbmAVCTyAEOu3VhgpDCfk1QtdJKB-YcDfQ8QVJnNAZXuq66Gj0mTAEUEj4pBkrfMFu0qXoBEQHzX6yQMgPsp-3kIGN3hwdMoAtNovPx0TDLrNJhsw8jTzP"/>
+</div>
+</div>
+<div class="text-xl font-bold tracking-tight text-[#006686] font-['Inter','PingFang_SC']">赛育通</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#7dd3fc]/10 transition-colors duration-200 active:scale-95 text-[#006686]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+<!-- Hero Search Section -->
+<section class="mt-4">
+<div class="bg-gradient-to-br from-primary to-primary-container rounded-[2rem] p-8 sm:p-12 relative overflow-hidden shadow-[0_12px_40px_rgba(0,102,134,0.15)] flex flex-col items-center text-center">
+<!-- Abstract Glass Element -->
+<div class="absolute top-[-20%] right-[-10%] w-64 h-64 bg-surface-container-lowest/20 rounded-full blur-2xl"></div>
+<div class="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-primary-fixed/30 rounded-full blur-xl"></div>
+<h1 class="text-3xl sm:text-4xl font-headline font-extrabold text-on-primary mb-4 tracking-tight relative z-10">探索无限学习资源</h1>
+<p class="text-on-primary/80 text-sm sm:text-base mb-8 max-w-xl font-body relative z-10">从历年真题到前沿AI辅导，为您提供全方位的备赛与学习支持。</p>
+<div class="w-full max-w-2xl relative z-10 group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-4 rounded-full bg-surface-container-lowest text-on-surface placeholder-on-surface-variant/70 border-none shadow-[0_8px_30px_rgba(0,0,0,0.08)] focus:ring-2 focus:ring-primary-container/50 focus:outline-none transition-all duration-300 text-sm font-body" placeholder="搜索历年真题、案例分析或AI辅导资料..." type="text"/>
+<button class="absolute inset-y-2 right-2 bg-primary text-on-primary px-6 rounded-full font-label font-medium hover:bg-primary/90 transition-colors">
+                        搜索
+                    </button>
+</div>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="w-1 h-6 bg-primary-fixed rounded-full"></div>
+<h2 class="text-xl font-headline font-bold text-on-surface">核心资源分类</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Category Card 1 -->
+<a class="group relative bg-surface-container-lowest rounded-[1.5rem] p-6 shadow-[0_12px_40px_rgba(0,102,134,0.04)] overflow-hidden transition-transform duration-300 hover:-translate-y-1" href="#">
+<div class="absolute right-0 top-0 w-32 h-32 bg-primary-container/10 rounded-bl-full -z-10 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined text-2xl">description</span>
+</div>
+<h3 class="text-lg font-headline font-semibold text-on-surface mb-2">历年考卷</h3>
+<p class="text-sm text-on-surface-variant mb-4 line-clamp-2">收录各大学科竞赛历年真题，提供详细解析与得分点梳理。</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-primary-container/20 text-on-primary-container text-xs rounded-md font-label">数学竞赛</span>
+<span class="px-3 py-1 bg-primary-container/20 text-on-primary-container text-xs rounded-md font-label">物理奥赛</span>
+</div>
+</a>
+<!-- Category Card 2 -->
+<a class="group relative bg-surface-container-lowest rounded-[1.5rem] p-6 shadow-[0_12px_40px_rgba(0,102,134,0.04)] overflow-hidden transition-transform duration-300 hover:-translate-y-1" href="#">
+<div class="absolute right-0 top-0 w-32 h-32 bg-tertiary-container/10 rounded-bl-full -z-10 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="w-12 h-12 bg-tertiary/10 rounded-full flex items-center justify-center mb-4 text-tertiary">
+<span class="material-symbols-outlined text-2xl">cases</span>
+</div>
+<h3 class="text-lg font-headline font-semibold text-on-surface mb-2">案例分析</h3>
+<p class="text-sm text-on-surface-variant mb-4 line-clamp-2">深度剖析商业、科技等领域经典案例，培养逻辑思维。</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-tertiary-container/20 text-on-tertiary-container text-xs rounded-md font-label">商业分析</span>
+<span class="px-3 py-1 bg-tertiary-container/20 text-on-tertiary-container text-xs rounded-md font-label">创新案例</span>
+</div>
+</a>
+<!-- Category Card 3 -->
+<a class="group relative bg-surface-container-lowest rounded-[1.5rem] p-6 shadow-[0_12px_40px_rgba(0,102,134,0.04)] overflow-hidden transition-transform duration-300 hover:-translate-y-1 md:col-span-1 sm:col-span-2" href="#">
+<div class="absolute right-0 top-0 w-32 h-32 bg-secondary-container/20 rounded-bl-full -z-10 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4 text-secondary">
+<span class="material-symbols-outlined text-2xl">psychology</span>
+</div>
+<h3 class="text-lg font-headline font-semibold text-on-surface mb-2">AI 辅导</h3>
+<p class="text-sm text-on-surface-variant mb-4 line-clamp-2">基于大模型的智能辅导系统，随时解答疑惑，定制学习路径。</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary-container/40 text-on-secondary-container text-xs rounded-md font-label">智能答疑</span>
+<span class="px-3 py-1 bg-secondary-container/40 text-on-secondary-container text-xs rounded-md font-label">路径规划</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Seed-to-Fruit Flow (赛-创-就流程) -->
+<section class="bg-surface-container-low rounded-[2rem] p-8 sm:p-10 relative overflow-hidden bg-gradient-to-b from-surface-container-low to-surface border border-outline-variant/10 shadow-inner">
+<div class="max-w-4xl mx-auto relative z-10">
+<!-- Enhanced Header -->
+<div class="text-center mb-12">
+<span class="px-4 py-1.5 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase rounded-full border border-primary/20 mb-4 inline-block">Success Path</span>
+<h2 class="text-3xl md:text-4xl font-headline font-black tracking-tight text-on-surface">
+            赛·创·就 <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">全链路孵化</span>
+</h2>
+<p class="mt-4 text-on-surface-variant text-sm md:text-base max-w-xl mx-auto">
+            打造从学科竞赛到创新实践，最终走向名企就业的完整闭环成长路径
+        </p>
+</div>
+<!-- Pathway Stepper -->
+<div class="relative flex flex-col md:flex-row items-start justify-between gap-8 md:gap-4">
+<!-- Connecting Line (Desktop) -->
+<div class="absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-primary/20 via-tertiary/20 to-secondary/20 hidden md:block"></div>
+<!-- Step 1: Compete -->
+<div class="relative flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 w-full md:w-1/3 group">
+<div class="relative z-10">
+<div class="w-16 h-16 md:w-20 md:h-20 bg-white/40 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-xl border border-white/60 group-hover:scale-110 transition-transform duration-300 group-hover:border-primary/50">
+<span class="material-symbols-outlined text-3xl md:text-4xl text-primary font-light">trophy</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-[10px] font-bold">01</div>
+</div>
+<div class="flex flex-col">
+<h4 class="text-lg font-bold text-on-surface">赛 (Compete)</h4>
+<span class="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full mt-1 w-fit md:mx-auto">能力认证</span>
+<p class="text-xs text-on-surface-variant mt-2 md:px-4 hidden md:block">通过高水平竞赛磨炼专业技能，获取权威能力背书</p>
+</div>
+</div>
+<!-- Step 2: Create -->
+<div class="relative flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 w-full md:w-1/3 group">
+<div class="relative z-10">
+<div class="w-16 h-16 md:w-20 md:h-20 bg-white/40 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-xl border border-white/60 group-hover:scale-110 transition-transform duration-300 group-hover:border-tertiary/50">
+<span class="material-symbols-outlined text-3xl md:text-4xl text-tertiary font-light">lightbulb</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 bg-tertiary text-white rounded-full flex items-center justify-center text-[10px] font-bold">02</div>
+</div>
+<div class="flex flex-col">
+<h4 class="text-lg font-bold text-on-surface">创 (Create)</h4>
+<span class="text-xs font-medium text-tertiary bg-tertiary/10 px-3 py-1 rounded-full mt-1 w-fit md:mx-auto">项目实践</span>
+<p class="text-xs text-on-surface-variant mt-2 md:px-4 hidden md:block">将竞赛成果转化为真实项目，提升解决复杂问题的能力</p>
+</div>
+</div>
+<!-- Step 3: Career -->
+<div class="relative flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 w-full md:w-1/3 group">
+<div class="relative z-10">
+<div class="w-16 h-16 md:w-20 md:h-20 bg-white/40 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-xl border border-white/60 group-hover:scale-110 transition-transform duration-300 group-hover:border-secondary/50">
+<span class="material-symbols-outlined text-3xl md:text-4xl text-secondary font-light">work</span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary text-white rounded-full flex items-center justify-center text-[10px] font-bold">03</div>
+</div>
+<div class="flex flex-col">
+<h4 class="text-lg font-bold text-on-surface">就 (Career)</h4>
+<span class="text-xs font-medium text-secondary bg-secondary/10 px-3 py-1 rounded-full mt-1 w-fit md:mx-auto">名企直通</span>
+<p class="text-xs text-on-surface-variant mt-2 md:px-4 hidden md:block">对接优质企业资源，实现从校园到职场的无缝飞跃</p>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<div class="mt-12 text-center">
+<button class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-on-primary rounded-full font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all">
+            开启我的成长路径 <span class="material-symbols-outlined">trending_flat</span>
+</button>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary-container/20 rounded-full blur-[100px] -z-10"></div>
+<div class="absolute bottom-0 left-0 w-72 h-72 bg-secondary-container/20 rounded-full blur-[80px] -z-10"></div>
+</section>
+<!-- School Achievement Gallery -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-1 h-6 bg-primary-fixed rounded-full"></div>
+<h2 class="text-xl font-headline font-bold text-on-surface">院校成果展示</h2>
+</div>
+<a class="text-sm font-label text-primary hover:text-primary/80 flex items-center gap-1" href="#">查看全部 <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Gallery Item 1 -->
+<div class="bg-surface-container-lowest rounded-[1.5rem] overflow-hidden shadow-[0_12px_40px_rgba(0,102,134,0.04)] group">
+<div class="h-40 w-full relative overflow-hidden bg-surface-container-high">
+<img alt="University Campus" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="sunny day view of a modern university campus building with glass facade and green lawns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIhTjYz9rZ1FkKOR8xzdVTUGF4X6btLO4GiFCUiqsq4Gy6_jWuicoV_Nn-0EArni6ZjKsYfMDRkPELDiHTE7gE4cItG33SvhPdPdSaUcDgTZ5NPcC44kktIS0JqLBhJFI50-klc-2PY9yGwvLZWrSJ4vPLR3WUvm0IdgV7hi35NCdMSVA0O76k9r9Hsr_Gbic_fOnNwS6rBvLTdoGVFoTVnP8zfgmpAkdnl2C7KYZcnypN-qXLTWywhI64YnqS6I4ivnbAUblVApZy"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-4 text-white">
+<span class="px-2 py-0.5 bg-primary/80 backdrop-blur-md rounded text-[10px] font-medium mb-1 inline-block">金奖案例</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-headline font-semibold text-on-surface mb-1 text-base">清华大学 - 智能制造创新实践</h4>
+<p class="text-xs text-on-surface-variant mb-4 line-clamp-2">第十五届全国大学生智能车竞赛特等奖团队纪实与技术方案分享。</p>
+<div class="flex items-center gap-2 text-xs text-outline">
+<span class="material-symbols-outlined text-[14px]">visibility</span> 1.2k
+                            <span class="material-symbols-outlined text-[14px] ml-3">thumb_up</span> 342
+                        </div>
+</div>
+</div>
+<!-- Gallery Item 2 -->
+<div class="bg-surface-container-lowest rounded-[1.5rem] overflow-hidden shadow-[0_12px_40px_rgba(0,102,134,0.04)] group">
+<div class="h-40 w-full relative overflow-hidden bg-surface-container-high">
+<img alt="Students Collaborating" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="group of diverse university students collaborating over laptops and notebooks in a bright modern library setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkQxQD3eyzuFK6Ur0TEh64PjUtF514HpAYywOKUgzntx5uIoP86g01AvfbPR_5VWG1p2ba_tFfQo3dRI0FIuB7BuH8SrHwXnu5a8gdjzyXA1CF2B8T4IA2RNbVxeW7daS1fWGeMSkdxYzIo4jkMeh7P2voQuiSeJ_lSRlQgDXoQZ5te8wpa7wOHhSd0REjsyzZn1HuROvM8puJXr1bALaX0KWPiBJks7lSywVN_0n7QT9i_L-6pjTTurxY9KUUcl5LQK7C3UE0RvRC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-4 text-white">
+<span class="px-2 py-0.5 bg-tertiary/80 backdrop-blur-md rounded text-[10px] font-medium mb-1 inline-block">优秀孵化</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-headline font-semibold text-on-surface mb-1 text-base">上海交大 - 零碳校园商业计划</h4>
+<p class="text-xs text-on-surface-variant mb-4 line-clamp-2">从创意构想到落地融资，商赛一等奖团队的完整路演材料与复盘。</p>
+<div class="flex items-center gap-2 text-xs text-outline">
+<span class="material-symbols-outlined text-[14px]">visibility</span> 890
+                            <span class="material-symbols-outlined text-[14px] ml-3">thumb_up</span> 215
+                        </div>
+</div>
+</div>
+<!-- Gallery Item 3 -->
+<div class="bg-surface-container-lowest rounded-[1.5rem] overflow-hidden shadow-[0_12px_40px_rgba(0,102,134,0.04)] group sm:hidden lg:block">
+<div class="h-40 w-full relative overflow-hidden bg-surface-container-high">
+<img alt="Tech Lab" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close up of hands typing on a laptop with data visualizations on screen in a modern tech workspace with blue tint lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJtAQYzrpG0JxbAPZq7F1kd4wrL4XjO93QXoUSiS0YRVd5A8oxBz_QfhbeK3pHQXV1CVTOI5yeYJ9ISQsiupiVtGwJUh_WqX7nW04vUWPZ6AlWUy-fGaU7WeMRwT1FAPeqlIRAd5cSmCmbSZj0gfXn_jPM-IF_itaQthToDkVk0C5GyiZQqqSKlphKvl48nZC2C04UnThz3QZOS2xIDKAZZK2pzx_tv5FbsDUZrMn1tVz7I-JXnPa5rMC_VF2oCkC5_HsXxwT61l9-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-3 left-4 text-white">
+<span class="px-2 py-0.5 bg-secondary/80 backdrop-blur-md rounded text-[10px] font-medium mb-1 inline-block">前沿探索</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-headline font-semibold text-on-surface mb-1 text-base">浙江大学 - 医疗大模型应用研究</h4>
+<p class="text-xs text-on-surface-variant mb-4 line-clamp-2">结合医疗垂直领域数据，探索大模型在辅助诊断中的应用潜力。</p>
+<div class="flex items-center gap-2 text-xs text-outline">
+<span class="material-symbols-outlined text-[14px]">visibility</span> 2.1k
+                            <span class="material-symbols-outlined text-[14px] ml-3">thumb_up</span> 560
+                        </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[24px] bg-[#ffffff]/80 backdrop-blur-xl border-t border-[#bec8ce]/15 shadow-[0_-8px_30px_rgba(0,102,134,0.08)] md:hidden">
+<div class="flex justify-around items-center h-20 px-2 pb-safe w-full max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">home</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">emoji_events</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium">赛事</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">dashboard</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium">工作台</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#7dd3fc]/30 text-[#006686] rounded-2xl px-3 py-1 active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium">资源库</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] px-3 py-1 hover:text-[#006686] transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">person</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium">我的</span>
+</a>
+</div>
+</nav>
+<!-- Global Nav for Web (hidden on mobile, shown on md+) -->
+<!-- This assumes the TopAppBar could be extended for web, but keeping it simple based on instructions. Often a side nav or extended top nav is used for web. For this test, relying on BottomNav for mobile and assuming TopAppBar contains necessary actions. -->
+</body></html>

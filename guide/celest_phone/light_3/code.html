@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>赛育通 - 赛事</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#fcba5e",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed-variant": "#2d4a59",
+                        "inverse-surface": "#2d3133",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#754b00",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#835500",
+                        "error": "#ba1a1a",
+                        "primary": "#006686",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "primary-fixed": "#c0e8ff",
+                        "on-primary-fixed-variant": "#004d66",
+                        "on-primary-fixed": "#001e2b",
+                        "on-primary-container": "#005b78",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#001e2b",
+                        "error-container": "#ffdad6",
+                        "secondary": "#456272",
+                        "tertiary-container": "#febc60",
+                        "surface-container": "#eceef0",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3f484e",
+                        "secondary-fixed": "#c8e7f9",
+                        "primary-fixed-dim": "#7bd1fa",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffddb5",
+                        "surface-tint": "#006686",
+                        "inverse-primary": "#7bd1fa",
+                        "on-tertiary-fixed": "#2a1800",
+                        "secondary-container": "#c5e4f6",
+                        "outline": "#6f787e",
+                        "surface": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#496776",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#bec8ce",
+                        "on-tertiary-fixed-variant": "#633f00",
+                        "primary-container": "#7dd3fc",
+                        "secondary-fixed-dim": "#accbdd",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter", "Noto Sans SC", "sans-serif"],
+                        "body": ["Inter", "Noto Sans SC", "sans-serif"],
+                        "label": ["Inter", "Noto Sans SC", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #006686 0%, #7dd3fc 100%);
+        }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col pt-16 pb-20 md:pb-0">
+<!-- TopAppBar (Hidden on Mobile, Visible on Web) -->
+<header class="hidden md:flex fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-lg dark:bg-[#191c1e]/70 shadow-[0_4px_20px_rgba(0,102,134,0.04)] bg-[#f2f4f6] dark:bg-[#2e3133]">
+<div class="flex justify-between items-center px-4 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<h1 class="text-xl font-bold tracking-tight text-[#006686] dark:text-[#7dd3fc] font-headline">赛育通</h1>
+<nav class="flex gap-6">
+<a class="text-[#3f484e] dark:text-[#bec8ce] hover:bg-[#7dd3fc]/10 transition-colors duration-200 active:scale-95 transition-transform duration-200 px-3 py-2 rounded-lg font-label" href="#">首页</a>
+<a class="text-[#006686] dark:text-[#7dd3fc] font-bold hover:bg-[#7dd3fc]/10 transition-colors duration-200 active:scale-95 transition-transform duration-200 px-3 py-2 rounded-lg font-label" href="#">赛事</a>
+<a class="text-[#3f484e] dark:text-[#bec8ce] hover:bg-[#7dd3fc]/10 transition-colors duration-200 active:scale-95 transition-transform duration-200 px-3 py-2 rounded-lg font-label" href="#">工作台</a>
+<a class="text-[#3f484e] dark:text-[#bec8ce] hover:bg-[#7dd3fc]/10 transition-colors duration-200 active:scale-95 transition-transform duration-200 px-3 py-2 rounded-lg font-label" href="#">资源库</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm">
+                    U
+                </div>
+</div>
+</div>
+</header>
+<!-- Mobile Header -->
+<header class="md:hidden fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-lg shadow-[0_4px_20px_rgba(0,102,134,0.04)] h-16 flex items-center justify-between px-4">
+<h1 class="text-xl font-bold tracking-tight text-[#006686] font-headline">赛事</h1>
+<button class="text-on-surface-variant p-2">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+<!-- Search Section -->
+<section class="relative">
+<div class="glass-panel rounded-xl p-2 flex items-center shadow-[0_12px_40px_rgba(0,102,134,0.06)] border border-outline-variant/15">
+<span class="material-symbols-outlined text-on-surface-variant ml-3 mr-2">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none" placeholder="搜索比赛名称、主办方..." type="text"/>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors ml-2">
+                    搜索
+                </button>
+</div>
+</section>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-fixed"></div>
+<h3 class="text-on-surface-variant text-sm font-medium mb-1">累计获奖</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface font-headline tracking-tight">128</span>
+<span class="text-xs text-on-surface-variant">项</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-container"></div>
+<h3 class="text-on-surface-variant text-sm font-medium mb-1">进行中</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface font-headline tracking-tight">12</span>
+<span class="text-xs text-on-surface-variant">项</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container"></div>
+<h3 class="text-on-surface-variant text-sm font-medium mb-1">已完成</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface font-headline tracking-tight">45</span>
+<span class="text-xs text-on-surface-variant">项</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-center items-center cursor-pointer hover:bg-surface-container-low transition-colors border border-dashed border-outline-variant/30">
+<span class="material-symbols-outlined text-primary mb-2">add_circle</span>
+<span class="text-sm font-medium text-primary">新增记录</span>
+</div>
+</section>
+<!-- Category Filters -->
+<section class="flex flex-col gap-4">
+<h2 class="text-lg font-bold text-on-surface font-headline tracking-tight">赛事分类</h2>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2 rounded-md bg-primary-container/20 text-on-primary-container font-medium text-sm border border-primary-container/30 transition-colors">全部</button>
+<button class="px-5 py-2 rounded-md bg-surface-container-lowest text-on-surface-variant font-medium text-sm border border-outline-variant/15 hover:bg-surface-container-low transition-colors">校级</button>
+<button class="px-5 py-2 rounded-md bg-surface-container-lowest text-on-surface-variant font-medium text-sm border border-outline-variant/15 hover:bg-surface-container-low transition-colors">省级</button>
+<button class="px-5 py-2 rounded-md bg-surface-container-lowest text-on-surface-variant font-medium text-sm border border-outline-variant/15 hover:bg-surface-container-low transition-colors">国家级</button>
+</div>
+</section>
+<!-- Recommended Competitions List -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<h2 class="text-lg font-bold text-on-surface font-headline tracking-tight">推荐赛事</h2>
+<a class="text-sm text-primary hover:underline font-medium" href="#">查看更多</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-[0_12px_40px_rgba(0,102,134,0.06)] transition-all duration-300 flex flex-col h-full border border-outline-variant/10 relative">
+<div class="h-32 signature-gradient relative p-4 flex items-start justify-between">
+<span class="bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface text-xs font-bold px-2 py-1 rounded">国家级</span>
+<button class="text-surface-container-lowest hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bookmark</span>
+</button>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold text-on-surface leading-snug mb-2">2024年全国大学生数学建模竞赛</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2 mb-4 flex-1">培养大学生的创新意识及运用数学方法和计算机技术解决实际问题的能力。</p>
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">calendar_today</span>
+                                报名截止: 2024-09-01
+                            </div>
+<div class="flex items-center text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">group</span>
+                                组队要求: 3人/队
+                            </div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-surface-container-high text-on-surface-variant font-medium py-2 rounded-full text-sm hover:bg-surface-variant transition-colors">
+                                详情
+                            </button>
+<button class="flex-1 bg-primary text-on-primary font-medium py-2 rounded-full text-sm hover:bg-primary/90 transition-colors signature-gradient">
+                                立即报名
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-[0_12px_40px_rgba(0,102,134,0.06)] transition-all duration-300 flex flex-col h-full border border-outline-variant/10 relative">
+<div class="h-32 bg-secondary relative p-4 flex items-start justify-between">
+<span class="bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface text-xs font-bold px-2 py-1 rounded">省级</span>
+<button class="text-surface-container-lowest hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold text-on-surface leading-snug mb-2">第十五届"蓝桥杯"全国软件和信息技术专业人才大赛</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2 mb-4 flex-1">促进软件和信息领域专业技术人才培养，提升高校毕业生的就业竞争力。</p>
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">calendar_today</span>
+                                报名截止: 2024-03-15
+                            </div>
+<div class="flex items-center text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">person</span>
+                                个人赛
+                            </div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-surface-container-high text-on-surface-variant font-medium py-2 rounded-full text-sm hover:bg-surface-variant transition-colors">
+                                详情
+                            </button>
+<button class="flex-1 bg-primary text-on-primary font-medium py-2 rounded-full text-sm hover:bg-primary/90 transition-colors signature-gradient">
+                                立即报名
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-[0_12px_40px_rgba(0,102,134,0.06)] transition-all duration-300 flex flex-col h-full border border-outline-variant/10 relative">
+<div class="h-32 bg-tertiary-container relative p-4 flex items-start justify-between">
+<span class="bg-surface-container-lowest/80 backdrop-blur-sm text-on-surface text-xs font-bold px-2 py-1 rounded">校级</span>
+<button class="text-surface-container-lowest hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bookmark</span>
+</button>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold text-on-surface leading-snug mb-2">校园创新创业大赛暨"互联网+"选拔赛</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2 mb-4 flex-1">激发学生创新创业热情，展示我校创新创业教育成果。</p>
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">calendar_today</span>
+                                报名截止: 2024-05-10
+                            </div>
+<div class="flex items-center text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">group</span>
+                                组队要求: 3-5人/队
+                            </div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-surface-container-high text-on-surface-variant font-medium py-2 rounded-full text-sm hover:bg-surface-variant transition-colors">
+                                详情
+                            </button>
+<button class="flex-1 bg-primary text-on-primary font-medium py-2 rounded-full text-sm hover:bg-primary/90 transition-colors signature-gradient">
+                                立即报名
+                            </button>
+</div>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Visible on Mobile, Hidden on Web) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-[24px] bg-[#ffffff]/80 backdrop-blur-xl dark:bg-[#191c1e]/80 shadow-[0_-8px_30px_rgba(0,102,134,0.08)]">
+<div class="flex justify-around items-center h-20 px-2 pb-safe w-full border-t border-[#bec8ce]/15">
+<a class="flex flex-col items-center justify-center text-[#3f484e] dark:text-[#bec8ce] px-3 py-1 hover:text-[#006686] dark:hover:text-[#7dd3fc] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#7dd3fc]/30 dark:bg-[#7dd3fc]/20 text-[#006686] dark:text-[#c0e8ff] rounded-2xl px-3 py-1 hover:text-[#006686] dark:hover:text-[#7dd3fc] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">赛事</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] dark:text-[#bec8ce] px-3 py-1 hover:text-[#006686] dark:hover:text-[#7dd3fc] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">工作台</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] dark:text-[#bec8ce] px-3 py-1 hover:text-[#006686] dark:hover:text-[#7dd3fc] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">资源库</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3f484e] dark:text-[#bec8ce] px-3 py-1 hover:text-[#006686] dark:hover:text-[#7dd3fc] transition-all active:scale-90 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter','PingFang_SC'] text-[10px] font-medium mt-1">我的</span>
+</a>
+</div>
+</nav>
+</body></html>
