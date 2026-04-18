@@ -1,0 +1,4 @@
+enum NotificationDeliveryType {
+  system,
+  inApp,
+}
