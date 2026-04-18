@@ -1,53 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../l10n/l10n.dart';
 import '../../constants/app_breakpoints.dart';
-import '../../theme/app_radius.dart';
+import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
-import '../../theme/theme_context_extension.dart';
 import 'app_bottom_nav_bar.dart';
 
 class AppShellDestination {
   const AppShellDestination({
-    required this.label,
+    required this.section,
     required this.path,
     required this.icon,
     required this.activeIcon,
   });
 
-  final String label;
+  final AppShellSection section;
   final String path;
   final IconData icon;
   final IconData activeIcon;
 }
 
+enum AppShellSection { home, competition, workspace, resources, profile }
+
 const List<AppShellDestination> appShellDestinations = <AppShellDestination>[
   AppShellDestination(
-    label: '首页',
+    section: AppShellSection.home,
     path: '/home',
     icon: Icons.home_outlined,
     activeIcon: Icons.home,
   ),
   AppShellDestination(
-    label: '赛事',
+    section: AppShellSection.competition,
     path: '/competition',
     icon: Icons.emoji_events_outlined,
     activeIcon: Icons.emoji_events,
   ),
   AppShellDestination(
-    label: '工作区',
+    section: AppShellSection.workspace,
     path: '/workspace',
     icon: Icons.dashboard_customize_outlined,
     activeIcon: Icons.dashboard_customize,
   ),
   AppShellDestination(
-    label: '资源库',
+    section: AppShellSection.resources,
     path: '/resources',
-    icon: Icons.folder_open_outlined,
-    activeIcon: Icons.folder_open,
+    icon: Icons.chat_bubble_outline_rounded,
+    activeIcon: Icons.chat_bubble_rounded,
   ),
   AppShellDestination(
-    label: '我的',
+    section: AppShellSection.profile,
     path: '/profile',
     icon: Icons.person_outline,
     activeIcon: Icons.person,
@@ -55,10 +57,7 @@ const List<AppShellDestination> appShellDestinations = <AppShellDestination>[
 ];
 
 class AppShell extends StatefulWidget {
-  const AppShell({
-    super.key,
-    required this.child,
-  });
+  const AppShell({super.key, required this.child});
 
   final Widget child;
 
@@ -67,77 +66,59 @@ class AppShell extends StatefulWidget {
 }
 
 class _AppShellState extends State<AppShell> {
-  bool _desktopExpanded = false;
+  bool? _desktopExpandedOverride;
 
   @override
   Widget build(BuildContext context) {
     final currentPath = GoRouterState.of(context).uri.path;
     final currentIndex = _indexForPath(currentPath);
-    final isDesktop =
-        MediaQuery.sizeOf(context).width >= AppBreakpoints.desktop;
+    final width = MediaQuery.sizeOf(context).width;
+    final isMobile = width < AppBreakpoints.mobile;
+    final desktopExpanded = _desktopExpandedOverride ?? width >= 1180;
 
-    if (isDesktop) {
+    if (isMobile) {
       return Scaffold(
-        body: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                context.appTheme.pageGradientStart,
-                context.appTheme.pageGradientEnd,
-              ],
-            ),
-          ),
-          child: SafeArea(
-            child: Row(
-              children: [
-                _DesktopSidebar(
-                  expanded: _desktopExpanded,
-                  currentIndex: currentIndex,
-                  onToggle: () {
-                    setState(() {
-                      _desktopExpanded = !_desktopExpanded;
-                    });
-                  },
-                  onSelect: (index) => _goTo(context, index),
-                ),
-                Expanded(child: widget.child),
-              ],
-            ),
-          ),
+        backgroundColor: AppColors.surface,
+        extendBody: true,
+        body: SafeArea(bottom: false, child: widget.child),
+        bottomNavigationBar: AppBottomNavBar(
+          currentIndex: currentIndex,
+          items: [
+            for (final destination in appShellDestinations)
+              AppBottomNavItem(
+                icon: destination.icon,
+                label: _labelFor(context, destination.section),
+                activeIcon: destination.activeIcon,
+              ),
+          ],
+          onTap: (index) => _goTo(context, index),
         ),
       );
     }
 
     return Scaffold(
-      body: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              context.appTheme.pageGradientStart,
-              context.appTheme.pageGradientEnd,
-            ],
-          ),
-        ),
-        child: SafeArea(
-          bottom: false,
-          child: widget.child,
-        ),
-      ),
-      bottomNavigationBar: AppBottomNavBar(
-        currentIndex: currentIndex,
-        items: [
-          for (final destination in appShellDestinations)
-            AppBottomNavItem(
-              icon: destination.icon,
-              label: destination.label,
-              activeIcon: destination.activeIcon,
+      backgroundColor: AppColors.surface,
+      body: SafeArea(
+        child: Row(
+          children: [
+            _DesktopGeminiSidebar(
+              expanded: desktopExpanded,
+              currentIndex: currentIndex,
+              onToggle: () {
+                setState(() {
+                  _desktopExpandedOverride = !desktopExpanded;
+                });
+              },
+              onSelect: (index) => _goTo(context, index),
             ),
-        ],
-        onTap: (index) => _goTo(context, index),
+            Expanded(
+              child: ColoredBox(
+                color: AppColors.surfaceContainerLowest,
+                child: widget.child,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -171,8 +152,20 @@ class _AppShellState extends State<AppShell> {
   }
 }
 
-class _DesktopSidebar extends StatelessWidget {
-  const _DesktopSidebar({
+String _labelFor(BuildContext context, AppShellSection section) {
+  final l10n = context.l10n;
+
+  return switch (section) {
+    AppShellSection.home => l10n.navHome,
+    AppShellSection.competition => l10n.navCompetition,
+    AppShellSection.workspace => l10n.navWorkspace,
+    AppShellSection.resources => l10n.navResources,
+    AppShellSection.profile => l10n.navProfile,
+  };
+}
+
+class _DesktopGeminiSidebar extends StatelessWidget {
+  const _DesktopGeminiSidebar({
     required this.expanded,
     required this.currentIndex,
     required this.onToggle,
@@ -186,112 +179,119 @@ class _DesktopSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appTheme = context.appTheme;
+    const railWidth = 76.0;
+    const expandedWidth = 220.0;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 220),
       curve: Curves.easeOutCubic,
-      width: expanded ? 256 : 84,
-      margin: const EdgeInsets.all(AppSpacing.md),
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.sm,
-        vertical: AppSpacing.md,
-      ),
-      decoration: BoxDecoration(
-        color: appTheme.sectionBackground,
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        border: Border.all(color: appTheme.sectionBorder),
-        boxShadow: [
-          BoxShadow(
-            color: appTheme.sectionShadow,
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
+      width: expanded ? expandedWidth : railWidth,
+      color: AppColors.surfaceContainerLow,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: onToggle,
-                icon: const Icon(Icons.menu_rounded),
-                color: context.colors.onSurface,
-              ),
-              if (expanded)
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: AppSpacing.xs),
-                    child: Text(
-                      '赛育通',
-                      style: context.textStyles.headlineMedium?.copyWith(
-                        fontSize: 18,
-                        color: context.colors.onSurface,
-                      ),
-                    ),
-                  ),
-                ),
-            ],
+          const SizedBox(height: AppSpacing.smPlus),
+          _DesktopSidebarButtonRow(
+            expanded: expanded,
+            railWidth: railWidth,
+            icon: Icons.menu_rounded,
+            label: '',
+            selected: false,
+            onTap: onToggle,
           ),
-          const SizedBox(height: AppSpacing.md),
-          Expanded(
-            child: ListView.separated(
-              itemCount: appShellDestinations.length,
-              separatorBuilder: (_, _) => const SizedBox(height: AppSpacing.xs),
-              itemBuilder: (context, index) {
-                final destination = appShellDestinations[index];
-                final selected = index == currentIndex;
-                final foreground = selected
-                    ? context.colors.primary
-                    : context.colors.onSurfaceVariant;
-
-                return InkWell(
-                  onTap: () => onSelect(index),
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 180),
-                    curve: Curves.easeOutCubic,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.md,
-                      vertical: AppSpacing.smPlus,
-                    ),
-                    decoration: BoxDecoration(
-                      color: selected
-                          ? context.appTheme.pillBackground
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(AppRadius.lg),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          selected
-                              ? destination.activeIcon
-                              : destination.icon,
-                          color: foreground,
-                        ),
-                        if (expanded) ...[
-                          const SizedBox(width: AppSpacing.md),
-                          Expanded(
-                            child: Text(
-                              destination.label,
-                              style: context.textStyles.bodyLarge?.copyWith(
-                                color: foreground,
-                                fontWeight: selected
-                                    ? FontWeight.w600
-                                    : FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-                );
-              },
+          const SizedBox(height: AppSpacing.smPlus),
+          for (var index = 0; index < appShellDestinations.length; index++)
+            _DesktopSidebarButtonRow(
+              expanded: expanded,
+              railWidth: railWidth,
+              icon: _iconFor(index, currentIndex),
+              label: _labelFor(context, appShellDestinations[index].section),
+              selected: currentIndex == index,
+              onTap: () => onSelect(index),
             ),
-          ),
         ],
       ),
     );
   }
+}
+
+class _DesktopSidebarButtonRow extends StatelessWidget {
+  const _DesktopSidebarButtonRow({
+    required this.expanded,
+    required this.railWidth,
+    required this.icon,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final bool expanded;
+  final double railWidth;
+  final IconData icon;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final foreground = selected
+        ? AppColors.primaryFixedDim
+        : AppColors.onSurfaceVariant;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        splashColor: Colors.transparent,
+        hoverColor: AppColors.primaryFixed.withValues(alpha: 0.16),
+        highlightColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        child: SizedBox(
+          height: 56,
+          child: Row(
+            children: [
+              SizedBox(
+                width: railWidth,
+                child: Center(child: Icon(icon, size: 24, color: foreground)),
+              ),
+              Expanded(
+                child: ClipRect(
+                  child: AnimatedAlign(
+                    duration: const Duration(milliseconds: 220),
+                    curve: Curves.easeOutCubic,
+                    alignment: Alignment.centerLeft,
+                    widthFactor: expanded ? 1 : 0,
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 150),
+                      opacity: expanded && label.isNotEmpty ? 1 : 0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: AppSpacing.md),
+                        child: Text(
+                          label,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: selected
+                                ? FontWeight.w600
+                                : FontWeight.w500,
+                            color: foreground,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+IconData _iconFor(int index, int currentIndex) {
+  final destination = appShellDestinations[index];
+  return currentIndex == index ? destination.activeIcon : destination.icon;
 }
