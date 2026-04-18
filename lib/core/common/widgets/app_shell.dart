@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/l10n.dart';
-import '../../constants/app_breakpoints.dart';
+import '../responsive_layout.dart';
 import '../../theme/app_colors.dart';
+import '../../theme/app_radius.dart';
+import '../../theme/app_sizes.dart';
 import '../../theme/app_spacing.dart';
 import 'app_bottom_nav_bar.dart';
 
@@ -22,6 +24,13 @@ class AppShellDestination {
 }
 
 enum AppShellSection { home, competition, workspace, resources, profile }
+
+const double _desktopSidebarLeadingLaneWidth =
+    AppSizes.desktopSidebarCollapsedWidth -
+    (AppSpacing.sm * 2) -
+    (AppSpacing.xs * 2);
+const double _desktopSidebarLeadingInset =
+    (_desktopSidebarLeadingLaneWidth - AppSizes.desktopSidebarButtonSize) / 2;
 
 const List<AppShellDestination> appShellDestinations = <AppShellDestination>[
   AppShellDestination(
@@ -73,11 +82,10 @@ class _AppShellState extends State<AppShell> {
     final currentPath = GoRouterState.of(context).uri.path;
     final currentIndex = _indexForPath(currentPath);
     final width = MediaQuery.sizeOf(context).width;
-    final isMobile = width < AppBreakpoints.mobile;
     final desktopExpanded = _desktopExpandedOverride ?? width >= 1180;
 
-    if (isMobile) {
-      return Scaffold(
+    return ResponsiveLayout(
+      mobile: Scaffold(
         backgroundColor: AppColors.surface,
         extendBody: true,
         body: SafeArea(bottom: false, child: widget.child),
@@ -93,31 +101,57 @@ class _AppShellState extends State<AppShell> {
           ],
           onTap: (index) => _goTo(context, index),
         ),
-      );
-    }
-
-    return Scaffold(
-      backgroundColor: AppColors.surface,
-      body: SafeArea(
-        child: Row(
-          children: [
-            _DesktopGeminiSidebar(
-              expanded: desktopExpanded,
-              currentIndex: currentIndex,
-              onToggle: () {
-                setState(() {
-                  _desktopExpandedOverride = !desktopExpanded;
-                });
-              },
-              onSelect: (index) => _goTo(context, index),
-            ),
-            Expanded(
-              child: ColoredBox(
-                color: AppColors.surfaceContainerLowest,
-                child: widget.child,
+      ),
+      tablet: Scaffold(
+        backgroundColor: AppColors.surfaceContainerLowest,
+        body: SafeArea(
+          child: Row(
+            children: [
+              _DesktopGeminiSidebar(
+                expanded: desktopExpanded,
+                currentIndex: currentIndex,
+                onToggle: () {
+                  setState(() {
+                    _desktopExpandedOverride = !desktopExpanded;
+                  });
+                },
+                onSelect: (index) => _goTo(context, index),
               ),
-            ),
-          ],
+              const SizedBox(width: AppSpacing.xs),
+              Expanded(
+                child: ColoredBox(
+                  color: AppColors.surfaceContainerLowest,
+                  child: widget.child,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      desktop: Scaffold(
+        backgroundColor: AppColors.surfaceContainerLowest,
+        body: SafeArea(
+          child: Row(
+            children: [
+              _DesktopGeminiSidebar(
+                expanded: desktopExpanded,
+                currentIndex: currentIndex,
+                onToggle: () {
+                  setState(() {
+                    _desktopExpandedOverride = !desktopExpanded;
+                  });
+                },
+                onSelect: (index) => _goTo(context, index),
+              ),
+              const SizedBox(width: AppSpacing.xs),
+              Expanded(
+                child: ColoredBox(
+                  color: AppColors.surfaceContainerLowest,
+                  child: widget.child,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -179,46 +213,144 @@ class _DesktopGeminiSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const railWidth = 76.0;
-    const expandedWidth = 220.0;
-
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 220),
-      curve: Curves.easeOutCubic,
-      width: expanded ? expandedWidth : railWidth,
-      color: AppColors.surfaceContainerLow,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: AppSpacing.smPlus),
-          _DesktopSidebarButtonRow(
-            expanded: expanded,
-            railWidth: railWidth,
-            icon: Icons.menu_rounded,
-            label: '',
-            selected: false,
-            onTap: onToggle,
-          ),
-          const SizedBox(height: AppSpacing.smPlus),
-          for (var index = 0; index < appShellDestinations.length; index++)
-            _DesktopSidebarButtonRow(
-              expanded: expanded,
-              railWidth: railWidth,
-              icon: _iconFor(index, currentIndex),
-              label: _labelFor(context, appShellDestinations[index].section),
-              selected: currentIndex == index,
-              onTap: () => onSelect(index),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.smPlus,
+        AppSpacing.smPlus,
+        AppSpacing.sm,
+        AppSpacing.smPlus,
+      ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 240),
+        curve: Curves.easeOutCubic,
+        width: expanded
+            ? AppSizes.desktopSidebarExpandedWidth
+            : AppSizes.desktopSidebarCollapsedWidth,
+        height: double.infinity,
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.sm,
+          AppSpacing.smPlus,
+          AppSpacing.sm,
+          AppSpacing.smPlus,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.surfaceContainerLowest,
+          borderRadius: BorderRadius.circular(AppRadius.xxxl),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.surfaceContainerLowest.withValues(alpha: 0.96),
+              blurRadius: 20,
+              spreadRadius: 6,
             ),
-        ],
+            BoxShadow(
+              color: AppColors.scrim.withValues(alpha: 0.08),
+              blurRadius: 22,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: AppSpacing.xs),
+            _DesktopSidebarMenuRow(expanded: expanded, onTap: onToggle),
+            const SizedBox(height: AppSpacing.smPlus),
+            for (var index = 0; index < appShellDestinations.length; index++)
+              _DesktopSidebarNavRow(
+                expanded: expanded,
+                icon: _iconFor(index, currentIndex),
+                label: _labelFor(context, appShellDestinations[index].section),
+                selected: currentIndex == index,
+                onTap: () => onSelect(index),
+              ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _DesktopSidebarButtonRow extends StatelessWidget {
-  const _DesktopSidebarButtonRow({
+class _DesktopSidebarMenuRow extends StatefulWidget {
+  const _DesktopSidebarMenuRow({required this.expanded, required this.onTap});
+
+  final bool expanded;
+  final VoidCallback onTap;
+
+  @override
+  State<_DesktopSidebarMenuRow> createState() => _DesktopSidebarMenuRowState();
+}
+
+class _DesktopSidebarMenuRowState extends State<_DesktopSidebarMenuRow> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+      child: SizedBox(
+        height: AppSizes.desktopSidebarItemHeight,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: SizedBox(
+            width: _desktopSidebarLeadingLaneWidth,
+            child: Center(
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                onEnter: (_) => setState(() => _hovered = true),
+                onExit: (_) => setState(() => _hovered = false),
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: widget.onTap,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      AnimatedOpacity(
+                        duration: const Duration(milliseconds: 110),
+                        curve: Curves.easeOut,
+                        opacity: _hovered ? 1 : 0,
+                        child: Container(
+                          width: AppSizes.desktopSidebarButtonSize,
+                          height: AppSizes.desktopSidebarButtonSize,
+                          decoration: BoxDecoration(
+                            color: AppColors.surfaceContainerLow,
+                            borderRadius: BorderRadius.circular(AppRadius.full),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: AppColors.shadow,
+                                blurRadius: 8,
+                                spreadRadius: -4,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: AppSizes.desktopSidebarButtonSize,
+                        height: AppSizes.desktopSidebarButtonSize,
+                        child: const Center(
+                          child: Icon(
+                            Icons.menu_rounded,
+                            size: AppSizes.iconLg,
+                            color: AppColors.onSurfaceVariant,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DesktopSidebarNavRow extends StatefulWidget {
+  const _DesktopSidebarNavRow({
     required this.expanded,
-    required this.railWidth,
     required this.icon,
     required this.label,
     required this.selected,
@@ -226,64 +358,147 @@ class _DesktopSidebarButtonRow extends StatelessWidget {
   });
 
   final bool expanded;
-  final double railWidth;
   final IconData icon;
   final String label;
   final bool selected;
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    final foreground = selected
-        ? AppColors.primaryFixedDim
-        : AppColors.onSurfaceVariant;
+  State<_DesktopSidebarNavRow> createState() => _DesktopSidebarNavRowState();
+}
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        splashColor: Colors.transparent,
-        hoverColor: AppColors.primaryFixed.withValues(alpha: 0.16),
-        highlightColor: Colors.transparent,
-        focusColor: Colors.transparent,
-        child: SizedBox(
-          height: 56,
-          child: Row(
-            children: [
-              SizedBox(
-                width: railWidth,
-                child: Center(child: Icon(icon, size: 24, color: foreground)),
-              ),
-              Expanded(
-                child: ClipRect(
-                  child: AnimatedAlign(
-                    duration: const Duration(milliseconds: 220),
-                    curve: Curves.easeOutCubic,
-                    alignment: Alignment.centerLeft,
-                    widthFactor: expanded ? 1 : 0,
-                    child: AnimatedOpacity(
-                      duration: const Duration(milliseconds: 150),
-                      opacity: expanded && label.isNotEmpty ? 1 : 0,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: AppSpacing.md),
-                        child: Text(
-                          label,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: selected
-                                ? FontWeight.w600
-                                : FontWeight.w500,
-                            color: foreground,
+class _DesktopSidebarNavRowState extends State<_DesktopSidebarNavRow> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final iconColor = widget.selected
+        ? AppColors.onPrimaryContainer
+        : AppColors.onSurfaceVariant;
+    final labelColor = widget.selected
+        ? AppColors.onPrimaryContainer
+        : AppColors.onSurface;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _hovered = true),
+        onExit: (_) => setState(() => _hovered = false),
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: widget.onTap,
+          child: TweenAnimationBuilder<double>(
+            tween: Tween<double>(end: widget.expanded ? 1 : 0),
+            duration: const Duration(milliseconds: 180),
+            curve: Curves.easeOutCubic,
+            builder: (context, expandValue, child) {
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  final trailingWidth =
+                      (constraints.maxWidth -
+                              _desktopSidebarLeadingLaneWidth -
+                              _desktopSidebarLeadingInset)
+                          .clamp(0.0, double.infinity);
+                  final backgroundColor = widget.selected
+                      ? AppColors.primaryFixed
+                      : AppColors.surfaceContainerLow;
+                  final stateOpacity = (widget.selected || _hovered)
+                      ? 1.0
+                      : 0.0;
+                  final backgroundWidth =
+                      AppSizes.desktopSidebarButtonSize +
+                      ((constraints.maxWidth -
+                              _desktopSidebarLeadingInset -
+                              AppSizes.desktopSidebarButtonSize) *
+                          expandValue);
+
+                  return SizedBox(
+                    height: AppSizes.desktopSidebarItemHeight,
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          left: _desktopSidebarLeadingInset,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Opacity(
+                              opacity: stateOpacity,
+                              child: Container(
+                                width: backgroundWidth,
+                                height: AppSizes.desktopSidebarButtonSize,
+                                decoration: BoxDecoration(
+                                  color: backgroundColor,
+                                  borderRadius: BorderRadius.circular(
+                                    AppRadius.full,
+                                  ),
+                                  boxShadow: widget.selected
+                                      ? const [
+                                          BoxShadow(
+                                            color: AppColors.shadow,
+                                            blurRadius: 8,
+                                            spreadRadius: -6,
+                                            offset: Offset(0, 2),
+                                          ),
+                                        ]
+                                      : null,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: _desktopSidebarLeadingLaneWidth,
+                              child: Center(
+                                child: SizedBox(
+                                  width: AppSizes.desktopSidebarButtonSize,
+                                  height: AppSizes.desktopSidebarButtonSize,
+                                  child: Center(
+                                    child: Icon(
+                                      widget.icon,
+                                      size: AppSizes.iconLg,
+                                      color: iconColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            ClipRect(
+                              child: SizedBox(
+                                width: trailingWidth * expandValue,
+                                child: Opacity(
+                                  opacity: expandValue,
+                                  child: child,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
+                  );
+                },
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: AppSpacing.md),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: widget.selected
+                        ? FontWeight.w600
+                        : FontWeight.w500,
+                    color: labelColor,
                   ),
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),

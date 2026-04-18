@@ -40,13 +40,14 @@ class AppTopBar extends StatelessWidget {
             ),
             Expanded(
               child: Align(
-                alignment:
-                    centerTitle ? Alignment.center : Alignment.centerLeft,
+                alignment: centerTitle
+                    ? Alignment.center
+                    : Alignment.centerLeft,
                 child: Text(
                   title,
                   style: context.textStyles.headlineMedium?.copyWith(
                     fontSize: 18,
-                    color: context.colors.primary,
+                    color: context.colors.onSurface,
                   ),
                 ),
               ),

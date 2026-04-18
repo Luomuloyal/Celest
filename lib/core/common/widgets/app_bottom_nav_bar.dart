@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
+import '../../theme/app_radius.dart';
+import '../../theme/app_sizes.dart';
 import '../../theme/app_spacing.dart';
 
 class AppBottomNavItem {
@@ -33,15 +35,14 @@ class AppBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final bottomInset = MediaQuery.paddingOf(context).bottom;
     final hasProminent = prominentIndex >= 0 && prominentIndex < items.length;
-    const baseBarHeight = 78.0;
-    const bumpHeight = 18.0;
-    const prominentSize = 68.0;
-    const prominentLift = 12.0;
 
     return Material(
       color: Colors.transparent,
       child: SizedBox(
-        height: baseBarHeight + bottomInset + bumpHeight,
+        height:
+            AppSizes.bottomNavHeight +
+            bottomInset +
+            AppSizes.bottomNavBumpHeight,
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -50,21 +51,18 @@ class AppBottomNavBar extends StatelessWidget {
               right: 0,
               bottom: 0,
               child: PhysicalShape(
-                color: Colors.white,
+                color: AppColors.surfaceContainerLowest,
                 elevation: 8,
-                shadowColor: const Color(0x24000000),
+                shadowColor: AppColors.shadow,
                 clipBehavior: Clip.antiAlias,
-                clipper: _BottomNavBarClipper(
-                  showCenterBump: hasProminent,
-                  bumpHeight: bumpHeight,
-                ),
+                clipper: _BottomNavBarClipper(showCenterBump: hasProminent),
                 child: SizedBox(
-                  height: baseBarHeight + bottomInset,
+                  height: AppSizes.bottomNavHeight + bottomInset,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(
                       AppSpacing.sm,
                       hasProminent
-                          ? bumpHeight + AppSpacing.xs
+                          ? AppSizes.bottomNavBumpHeight + AppSpacing.xs
                           : AppSpacing.smPlus,
                       AppSpacing.sm,
                       bottomInset > 0 ? bottomInset : AppSpacing.smPlus,
@@ -93,12 +91,12 @@ class AppBottomNavBar extends StatelessWidget {
               Positioned(
                 left: 0,
                 right: 0,
-                bottom: bottomInset + prominentLift,
+                bottom: bottomInset + AppSizes.bottomNavProminentLift,
                 child: Center(
                   child: _ProminentTabItem(
                     item: items[prominentIndex],
                     selected: currentIndex == prominentIndex,
-                    size: prominentSize,
+                    size: AppSizes.bottomNavProminentSize,
                     onTap: () => onTap?.call(prominentIndex),
                   ),
                 ),
@@ -131,7 +129,7 @@ class _BottomTabItem extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(AppRadius.xxl),
         splashColor: Colors.transparent,
         hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
@@ -144,12 +142,12 @@ class _BottomTabItem extends StatelessWidget {
             children: [
               Icon(
                 selected ? (item.activeIcon ?? item.icon) : item.icon,
-                size: 23,
+                size: AppSizes.iconLg,
                 color: foreground,
               ),
               const SizedBox(height: 3),
               SizedBox(
-                width: 62,
+                width: 64,
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
@@ -212,7 +210,7 @@ class _ProminentTabItem extends StatelessWidget {
             ),
             boxShadow: const [
               BoxShadow(
-                color: Color(0x2B000000),
+                color: AppColors.shadow,
                 blurRadius: 18,
                 offset: Offset(0, 8),
               ),
@@ -224,19 +222,19 @@ class _ProminentTabItem extends StatelessWidget {
             children: [
               Icon(
                 selected ? (item.activeIcon ?? item.icon) : item.icon,
-                size: 24,
+                size: AppSizes.iconLg,
                 color: iconColor,
               ),
               const SizedBox(height: 2),
               SizedBox(
-                width: 46,
+                width: 48,
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
                     item.label,
                     maxLines: 1,
                     softWrap: false,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 10.5,
                       color: iconColor,
                       fontWeight: FontWeight.w700,
@@ -255,42 +253,35 @@ class _ProminentTabItem extends StatelessWidget {
 }
 
 class _BottomNavBarClipper extends CustomClipper<Path> {
-  const _BottomNavBarClipper({
-    required this.showCenterBump,
-    required this.bumpHeight,
-  });
+  const _BottomNavBarClipper({required this.showCenterBump});
 
   final bool showCenterBump;
-  final double bumpHeight;
 
   @override
   Path getClip(Size size) {
-    final top = showCenterBump ? bumpHeight : 0.0;
-    const cornerRadius = 26.0;
+    final top = showCenterBump ? AppSizes.bottomNavBumpHeight : 0.0;
     final path = Path()..moveTo(0, size.height);
 
-    path.lineTo(0, top + cornerRadius);
-    path.quadraticBezierTo(0, top, cornerRadius, top);
+    path.lineTo(0, top + AppRadius.xxl);
+    path.quadraticBezierTo(0, top, AppRadius.xxl, top);
 
     if (showCenterBump) {
       final centerX = size.width / 2;
-      const bumpHalfWidth = 58.0;
-      const peakY = 2.0;
 
-      path.lineTo(centerX - bumpHalfWidth, top);
-      path.cubicTo(centerX - 38, top, centerX - 26, peakY, centerX, peakY);
+      path.lineTo(centerX - AppSizes.bottomNavCenterBumpHalfWidth, top);
+      path.cubicTo(centerX - 40, top, centerX - 28, 2, centerX, 2);
       path.cubicTo(
-        centerX + 26,
-        peakY,
-        centerX + 38,
+        centerX + 28,
+        2,
+        centerX + 40,
         top,
-        centerX + bumpHalfWidth,
+        centerX + AppSizes.bottomNavCenterBumpHalfWidth,
         top,
       );
     }
 
-    path.lineTo(size.width - cornerRadius, top);
-    path.quadraticBezierTo(size.width, top, size.width, top + cornerRadius);
+    path.lineTo(size.width - AppRadius.xxl, top);
+    path.quadraticBezierTo(size.width, top, size.width, top + AppRadius.xxl);
     path.lineTo(size.width, size.height);
     path.close();
 
@@ -299,7 +290,6 @@ class _BottomNavBarClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant _BottomNavBarClipper oldClipper) {
-    return oldClipper.showCenterBump != showCenterBump ||
-        oldClipper.bumpHeight != bumpHeight;
+    return oldClipper.showCenterBump != showCenterBump;
   }
 }
