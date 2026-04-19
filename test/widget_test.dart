@@ -15,7 +15,7 @@ void main() {
     notificationService = NotificationService();
   });
 
-  testWidgets('App boots to dashboard route', (WidgetTester tester) async {
+  testWidgets('App boots to workspace route', (WidgetTester tester) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: buildAppServiceOverrides(
@@ -27,10 +27,6 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    final hasPlaceholder =
-        find.text('工作区 页面占位').evaluate().isNotEmpty ||
-        find.text('Workspace page placeholder').evaluate().isNotEmpty;
-
-    expect(hasPlaceholder, isTrue);
+    expect(find.text('AI评审助手'), findsOneWidget);
   });
 }

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../core/common/widgets/app_shell.dart';
 import '../features/auth/presentation/pages/auth_page.dart';
 import '../features/competition/presentation/pages/competition_page.dart';
-import '../features/dashboard/presentation/pages/dashboard_page.dart';
+import '../features/home/presentation/pages/home_page.dart';
 import '../features/profile/presentation/pages/profile_page.dart';
 import '../features/resources/presentation/pages/resources_page.dart';
 import '../features/workspace/presentation/pages/workspace_page.dart';
@@ -29,7 +29,7 @@ class AppRouter {
             path: AppRoutes.home.path,
             name: AppRoutes.home.name,
             pageBuilder: (context, state) =>
-                NoTransitionPage<void>(child: const DashboardPage()),
+                NoTransitionPage<void>(child: const HomePage()),
           ),
           GoRoute(
             path: AppRoutes.competition.path,
