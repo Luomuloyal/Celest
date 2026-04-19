@@ -6,11 +6,7 @@ import '../../theme/app_sizes.dart';
 import '../../theme/app_spacing.dart';
 import '../../theme/theme_context_extension.dart';
 
-enum AppPillButtonVariant {
-  filled,
-  muted,
-  outlined,
-}
+enum AppPillButtonVariant { filled, muted, outlined }
 
 class AppPillButton extends StatelessWidget {
   const AppPillButton({
@@ -20,6 +16,9 @@ class AppPillButton extends StatelessWidget {
     this.onPressed,
     this.variant = AppPillButtonVariant.filled,
     this.expanded = false,
+    this.foregroundColor,
+    this.backgroundColor,
+    this.outlinedBorderSide,
   });
 
   final String label;
@@ -27,20 +26,25 @@ class AppPillButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final AppPillButtonVariant variant;
   final bool expanded;
+  final Color? foregroundColor;
+  final Color? backgroundColor;
+  final BorderSide? outlinedBorderSide;
 
   @override
   Widget build(BuildContext context) {
     final appTheme = context.appTheme;
-    final foreground = switch (variant) {
+    final defaultForeground = switch (variant) {
       AppPillButtonVariant.filled => context.colors.onPrimary,
       AppPillButtonVariant.muted => context.colors.onSurface,
       AppPillButtonVariant.outlined => context.colors.onSurface,
     };
-    final background = switch (variant) {
+    final defaultBackground = switch (variant) {
       AppPillButtonVariant.filled => context.colors.primary,
       AppPillButtonVariant.muted => appTheme.pillMutedBackground,
       AppPillButtonVariant.outlined => Colors.transparent,
     };
+    final foreground = foregroundColor ?? defaultForeground;
+    final background = backgroundColor ?? defaultBackground;
 
     final button = TextButton(
       onPressed: onPressed,
@@ -55,7 +59,8 @@ class AppPillButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.full),
           side: variant == AppPillButtonVariant.outlined
-              ? const BorderSide(color: AppColors.outlineVariant)
+              ? outlinedBorderSide ??
+                    const BorderSide(color: AppColors.outlineVariant)
               : BorderSide.none,
         ),
       ),

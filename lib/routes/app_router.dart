@@ -5,6 +5,8 @@ import '../core/common/widgets/app_shell.dart';
 import '../features/auth/presentation/pages/auth_page.dart';
 import '../features/competition/presentation/pages/competition_page.dart';
 import '../features/dashboard/presentation/pages/dashboard_page.dart';
+import '../features/resources/presentation/pages/resources_page.dart';
+import '../features/workspace/presentation/pages/workspace_page.dart';
 import '../l10n/l10n.dart';
 import 'app_routes.dart';
 import 'route_guard.dart';
@@ -27,9 +29,8 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.home.path,
             name: AppRoutes.home.name,
-            pageBuilder: (context, state) => NoTransitionPage<void>(
-              child: AppPlaceholderPage(title: context.l10n.navHome),
-            ),
+            pageBuilder: (context, state) =>
+                NoTransitionPage<void>(child: const DashboardPage()),
           ),
           GoRoute(
             path: AppRoutes.competition.path,
@@ -41,14 +42,13 @@ class AppRouter {
             path: AppRoutes.workspace.path,
             name: AppRoutes.workspace.name,
             pageBuilder: (context, state) =>
-                NoTransitionPage<void>(child: const DashboardPage()),
+                NoTransitionPage<void>(child: const WorkspacePage()),
           ),
           GoRoute(
             path: AppRoutes.resources.path,
             name: AppRoutes.resources.name,
-            pageBuilder: (context, state) => NoTransitionPage<void>(
-              child: AppPlaceholderPage(title: context.l10n.navResources),
-            ),
+            pageBuilder: (context, state) =>
+                NoTransitionPage<void>(child: const ResourcesPage()),
           ),
           GoRoute(
             path: AppRoutes.profile.path,

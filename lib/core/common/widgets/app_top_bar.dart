@@ -12,6 +12,11 @@ class AppTopBar extends StatelessWidget {
     this.trailing,
     this.centerTitle = true,
     this.sideWidth = 72,
+    this.height = AppSizes.appBarHeight + AppSpacing.md,
+    this.padding = const EdgeInsets.symmetric(
+      horizontal: AppSpacing.md,
+      vertical: AppSpacing.sm,
+    ),
   });
 
   final Widget? leading;
@@ -19,16 +24,15 @@ class AppTopBar extends StatelessWidget {
   final Widget? trailing;
   final bool centerTitle;
   final double sideWidth;
+  final double height;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: AppSizes.appBarHeight + AppSpacing.md,
+      height: height,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md,
-          vertical: AppSpacing.sm,
-        ),
+        padding: padding,
         child: Row(
           children: [
             SizedBox(
