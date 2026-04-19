@@ -6,43 +6,53 @@ import '../features/auth/presentation/pages/auth_page.dart';
 import '../features/competition/presentation/pages/competition_page.dart';
 import '../features/dashboard/presentation/pages/dashboard_page.dart';
 import '../l10n/l10n.dart';
+import 'app_routes.dart';
 import 'route_guard.dart';
 
 class AppRouter {
   const AppRouter._();
 
   static final GoRouter router = GoRouter(
-    initialLocation: '/workspace',
+    initialLocation: AppRoutes.workspace.path,
     redirect: RouteGuard.redirect,
     routes: <RouteBase>[
-      GoRoute(path: '/auth', builder: (context, state) => const AuthPage()),
+      GoRoute(
+        path: AppRoutes.auth.path,
+        name: AppRoutes.auth.name,
+        builder: (context, state) => const AuthPage(),
+      ),
       ShellRoute(
         builder: (context, state, child) => AppShell(child: child),
         routes: <RouteBase>[
           GoRoute(
-            path: '/home',
+            path: AppRoutes.home.path,
+            name: AppRoutes.home.name,
             pageBuilder: (context, state) => NoTransitionPage<void>(
               child: AppPlaceholderPage(title: context.l10n.navHome),
             ),
           ),
           GoRoute(
-            path: '/competition',
+            path: AppRoutes.competition.path,
+            name: AppRoutes.competition.name,
             pageBuilder: (context, state) =>
                 NoTransitionPage<void>(child: const CompetitionPage()),
           ),
           GoRoute(
-            path: '/workspace',
+            path: AppRoutes.workspace.path,
+            name: AppRoutes.workspace.name,
             pageBuilder: (context, state) =>
                 NoTransitionPage<void>(child: const DashboardPage()),
           ),
           GoRoute(
-            path: '/resources',
+            path: AppRoutes.resources.path,
+            name: AppRoutes.resources.name,
             pageBuilder: (context, state) => NoTransitionPage<void>(
               child: AppPlaceholderPage(title: context.l10n.navResources),
             ),
           ),
           GoRoute(
-            path: '/profile',
+            path: AppRoutes.profile.path,
+            name: AppRoutes.profile.name,
             pageBuilder: (context, state) => NoTransitionPage<void>(
               child: AppPlaceholderPage(title: context.l10n.navProfile),
             ),

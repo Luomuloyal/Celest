@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/l10n.dart';
+import '../../../routes/app_routes.dart';
 import '../responsive_layout.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_radius.dart';
@@ -12,13 +13,13 @@ import 'app_bottom_nav_bar.dart';
 class AppShellDestination {
   const AppShellDestination({
     required this.section,
-    required this.path,
+    required this.route,
     required this.icon,
     required this.activeIcon,
   });
 
   final AppShellSection section;
-  final String path;
+  final AppRouteSpec route;
   final IconData icon;
   final IconData activeIcon;
 }
@@ -35,31 +36,31 @@ const double _desktopSidebarLeadingInset =
 const List<AppShellDestination> appShellDestinations = <AppShellDestination>[
   AppShellDestination(
     section: AppShellSection.home,
-    path: '/home',
+    route: AppRoutes.home,
     icon: Icons.home_outlined,
     activeIcon: Icons.home,
   ),
   AppShellDestination(
     section: AppShellSection.competition,
-    path: '/competition',
+    route: AppRoutes.competition,
     icon: Icons.emoji_events_outlined,
     activeIcon: Icons.emoji_events,
   ),
   AppShellDestination(
     section: AppShellSection.workspace,
-    path: '/workspace',
+    route: AppRoutes.workspace,
     icon: Icons.dashboard_customize_outlined,
     activeIcon: Icons.dashboard_customize,
   ),
   AppShellDestination(
     section: AppShellSection.resources,
-    path: '/resources',
+    route: AppRoutes.resources,
     icon: Icons.chat_bubble_outline_rounded,
     activeIcon: Icons.chat_bubble_rounded,
   ),
   AppShellDestination(
     section: AppShellSection.profile,
-    path: '/profile',
+    route: AppRoutes.profile,
     icon: Icons.person_outline,
     activeIcon: Icons.person,
   ),
@@ -79,8 +80,11 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    final currentPath = GoRouterState.of(context).uri.path;
-    final currentIndex = _indexForPath(currentPath);
+    final currentState = GoRouterState.of(context);
+    final currentIndex = _indexForLocation(
+      routeName: currentState.topRoute?.name,
+      path: currentState.uri.path,
+    );
     final width = MediaQuery.sizeOf(context).width;
     final desktopExpanded = _desktopExpandedOverride ?? width >= 1180;
 
@@ -158,27 +162,34 @@ class _AppShellState extends State<AppShell> {
   }
 
   void _goTo(BuildContext context, int index) {
-    context.go(appShellDestinations[index].path);
+    context.goNamed(appShellDestinations[index].route.name);
   }
 
-  int _indexForPath(String path) {
+  int _indexForLocation({String? routeName, required String path}) {
+    final nameIndex = appShellDestinations.indexWhere(
+      (destination) => destination.route.name == routeName,
+    );
+    if (nameIndex != -1) {
+      return nameIndex;
+    }
+
     final index = appShellDestinations.indexWhere(
-      (destination) => path == destination.path,
+      (destination) => path == destination.route.path,
     );
     if (index != -1) {
       return index;
     }
 
-    if (path.startsWith('/competition')) {
+    if (path.startsWith(AppRoutes.competition.path)) {
       return 1;
     }
-    if (path.startsWith('/workspace') || path.startsWith('/dashboard')) {
+    if (path.startsWith(AppRoutes.workspace.path) || path.startsWith('/dashboard')) {
       return 2;
     }
-    if (path.startsWith('/resources') || path.startsWith('/team')) {
+    if (path.startsWith(AppRoutes.resources.path) || path.startsWith('/team')) {
       return 3;
     }
-    if (path.startsWith('/profile')) {
+    if (path.startsWith(AppRoutes.profile.path)) {
       return 4;
     }
 

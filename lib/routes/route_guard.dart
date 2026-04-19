@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
+import 'app_routes.dart';
+
 class RouteGuard {
   const RouteGuard._();
 
@@ -8,15 +10,15 @@ class RouteGuard {
     final path = state.uri.path;
 
     if (path == '/') {
-      return '/workspace';
+      return AppRoutes.workspace.path;
     }
 
     if (path == '/dashboard') {
-      return '/workspace';
+      return AppRoutes.workspace.path;
     }
 
     if (path == '/team') {
-      return '/resources';
+      return AppRoutes.resources.path;
     }
 
     return null;
