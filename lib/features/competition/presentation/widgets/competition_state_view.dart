@@ -36,7 +36,7 @@ class CompetitionStateView extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.read(competitionListProvider.notifier).reload(),
+        onPressed: () => ref.invalidate(competitionListProvider),
         child: const Icon(Icons.refresh),
       ),
     );
