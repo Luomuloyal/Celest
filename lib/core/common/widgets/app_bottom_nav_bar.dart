@@ -142,10 +142,10 @@ class _BottomTabItem extends StatelessWidget {
             children: [
               Icon(
                 selected ? (item.activeIcon ?? item.icon) : item.icon,
-                size: AppSizes.iconLg,
+                size: AppSizes.iconMd,
                 color: foreground,
               ),
-              const SizedBox(height: 3),
+              const SizedBox(height: 2),
               SizedBox(
                 width: 64,
                 child: FittedBox(
@@ -155,11 +155,11 @@ class _BottomTabItem extends StatelessWidget {
                     maxLines: 1,
                     softWrap: false,
                     style: TextStyle(
-                      fontSize: 10.5,
+                      fontSize: 10,
                       color: foreground,
                       fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                      letterSpacing: 0.12,
-                      height: 1.1,
+                      letterSpacing: 0.1,
+                      height: 1,
                     ),
                   ),
                 ),

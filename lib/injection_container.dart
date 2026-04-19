@@ -3,13 +3,15 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'core/theme/theme_controller.dart';
 import 'core/utils/network/api_client.dart';
 import 'core/utils/network/api_error_handler.dart';
 import 'core/utils/network/interceptors/api_logging_interceptor.dart';
 import 'core/utils/network/interceptors/auth_interceptor.dart';
 import 'core/utils/notifications/notification_service.dart';
 import 'core/utils/notifications/web/web_notification_adapter.dart';
+import 'features/competition/data/repositories/competition_repository_impl.dart';
+import 'features/competition/domain/repositories/competition_repository.dart';
+import 'features/competition/domain/usecases/get_competition_list.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -49,12 +51,6 @@ Future<void> configureDependencies() async {
     );
   }
 
-  if (!sl.isRegistered<ThemeController>()) {
-    sl.registerLazySingleton<ThemeController>(
-      () => ThemeController(sl<SharedPreferences>()),
-    );
-  }
-
   if (!sl.isRegistered<ApiClient>()) {
     sl.registerLazySingleton<ApiClient>(
       () => ApiClient(
@@ -72,6 +68,18 @@ Future<void> configureDependencies() async {
         plugin: sl<FlutterLocalNotificationsPlugin>(),
         webAdapter: sl<WebNotificationAdapter>(),
       ),
+    );
+  }
+
+  if (!sl.isRegistered<CompetitionRepository>()) {
+    sl.registerLazySingleton<CompetitionRepository>(
+      CompetitionRepositoryImpl.new,
+    );
+  }
+
+  if (!sl.isRegistered<GetCompetitionList>()) {
+    sl.registerLazySingleton<GetCompetitionList>(
+      () => GetCompetitionList(sl<CompetitionRepository>()),
     );
   }
 }

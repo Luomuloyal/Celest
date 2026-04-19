@@ -1,18 +1,17 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app.dart';
-import 'core/theme/theme_controller.dart';
 import 'injection_container.dart' as di;
 import 'core/utils/notifications/notification_service.dart';
 
 Future<void> bootstrap() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.configureDependencies();
-  await di.sl<ThemeController>().load();
   try {
     await di.sl<NotificationService>().initialize();
   } catch (_) {
     // Keep app startup resilient even if native notification setup fails.
   }
-  runApp(const CelestApp());
+  runApp(const ProviderScope(child: CelestApp()));
 }

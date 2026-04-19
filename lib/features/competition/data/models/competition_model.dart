@@ -1,5 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import '../../domain/entities/competition.dart';
 
+part 'competition_model.g.dart';
+
+@JsonSerializable()
 class CompetitionModel extends Competition {
   const CompetitionModel({
     required super.id,
@@ -7,19 +12,8 @@ class CompetitionModel extends Competition {
     required super.status,
   });
 
-  factory CompetitionModel.fromJson(Map<String, dynamic> json) {
-    return CompetitionModel(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      status: json['status'] as String,
-    );
-  }
+  factory CompetitionModel.fromJson(Map<String, dynamic> json) =>
+      _$CompetitionModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'status': status,
-    };
-  }
+  Map<String, dynamic> toJson() => _$CompetitionModelToJson(this);
 }

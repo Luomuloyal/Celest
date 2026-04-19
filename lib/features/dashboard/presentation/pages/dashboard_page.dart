@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/common/providers/app_service_providers.dart';
 import '../../../../core/common/widgets/app_action_tile.dart';
-import '../../../../core/common/widgets/app_bottom_nav_bar.dart';
 import '../../../../core/common/widgets/app_competition_card.dart';
 import '../../../../core/common/widgets/app_hero_banner.dart';
 import '../../../../core/common/widgets/app_list_tile_card.dart';
@@ -13,15 +14,15 @@ import '../../../../core/common/widgets/app_timeline_item.dart';
 import '../../../../core/common/widgets/app_top_bar.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/theme_controller.dart';
-import '../../../../core/utils/notifications/notification_service.dart';
-import '../../../../core/utils/notifications/models/notification_target.dart';
-import '../../../../injection_container.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notificationService = ref.read(notificationServiceProvider);
+    final themeController = ref.read(themeModeProvider.notifier);
+
     return AppPageScaffold(
       topBar: AppTopBar(
         leading: const CircleAvatar(
@@ -30,12 +31,9 @@ class DashboardPage extends StatelessWidget {
         ),
         title: 'Celest',
         trailing: _TopBarActions(
-          onThemeToggle: () => sl<ThemeController>().toggle(),
+          onThemeToggle: () => themeController.toggle(),
           onNotify: () {
-            sl<NotificationService>().showInfo(
-              '系统提醒',
-              '你有 1 条新的竞赛动态待查看。',
-            );
+            notificationService.showInfo('系统提醒', '你有 1 条新的竞赛动态待查看。');
           },
         ),
       ),
@@ -53,21 +51,14 @@ class DashboardPage extends StatelessWidget {
             actionLabel: '查看我的工作台',
             actionIcon: Icons.arrow_forward,
             onActionTap: () {
-              sl<NotificationService>().showInfo(
-                '工作台',
-                '工作台入口已准备好，后续接真实业务路由即可。',
-              );
+              notificationService.showInfo('工作台', '工作台入口已准备好，后续接真实业务路由即可。');
             },
           ),
           const SizedBox(height: AppSpacing.xl),
           const Row(
             children: [
               Expanded(
-                child: AppStatCard(
-                  label: '待办任务',
-                  value: '12',
-                  unit: '项',
-                ),
+                child: AppStatCard(label: '待办任务', value: '12', unit: '项'),
               ),
               SizedBox(width: AppSpacing.md),
               Expanded(
@@ -147,16 +138,10 @@ class DashboardPage extends StatelessWidget {
             countdown: const Duration(days: 12, hours: 8, minutes: 45),
             teamInfo: '组队要求: 3人/队',
             onPrimaryTap: () {
-              sl<NotificationService>().showInfo(
-                '报名提示',
-                '这里后续接入真实报名流程。',
-              );
+              notificationService.showInfo('报名提示', '这里后续接入真实报名流程。');
             },
             onSecondaryTap: () {
-              sl<NotificationService>().showInfo(
-                '赛事详情',
-                '这里后续接入赛事详情页。',
-              );
+              notificationService.showInfo('赛事详情', '这里后续接入赛事详情页。');
             },
           ),
           const SizedBox(height: AppSpacing.xl),
@@ -191,10 +176,7 @@ class DashboardPage extends StatelessWidget {
             title: '通知设置',
             subtitle: '测试系统通知与应用内兜底通知链路',
             onTap: () {
-              sl<NotificationService>().showInfo(
-                '通知测试',
-                '通知链路工作正常。',
-              );
+              notificationService.showInfo('通知测试', '通知链路工作正常。');
             },
           ),
           const SizedBox(height: AppSpacing.md),
@@ -202,36 +184,16 @@ class DashboardPage extends StatelessWidget {
             icon: Icons.dark_mode_outlined,
             title: '切换主题',
             subtitle: '亮色 / 深色主题即时切换并持久化保存',
-            onTap: () => sl<ThemeController>().toggle(),
+            onTap: () => themeController.toggle(),
           ),
         ],
-      ),
-      bottomNavigationBar: AppBottomNavBar(
-        currentIndex: 2,
-        items: const [
-          AppBottomNavItem(icon: Icons.home_outlined, label: '首页', activeIcon: Icons.home),
-          AppBottomNavItem(icon: Icons.emoji_events_outlined, label: '赛事', activeIcon: Icons.emoji_events),
-          AppBottomNavItem(icon: Icons.dashboard_outlined, label: '工作台', activeIcon: Icons.dashboard),
-          AppBottomNavItem(icon: Icons.folder_open_outlined, label: '资源库', activeIcon: Icons.folder_open),
-          AppBottomNavItem(icon: Icons.person_outline, label: '我的', activeIcon: Icons.person),
-        ],
-        onTap: (index) {
-          sl<NotificationService>().showInfo(
-            '导航点击',
-            '当前点击了第 ${index + 1} 个底部导航项。',
-            target: NotificationTarget.inAppOnly,
-          );
-        },
       ),
     );
   }
 }
 
 class _TopBarActions extends StatelessWidget {
-  const _TopBarActions({
-    required this.onThemeToggle,
-    required this.onNotify,
-  });
+  const _TopBarActions({required this.onThemeToggle, required this.onNotify});
 
   final VoidCallback onThemeToggle;
   final VoidCallback onNotify;
@@ -256,10 +218,7 @@ class _TopBarActions extends StatelessWidget {
 }
 
 class _ActionIconButton extends StatelessWidget {
-  const _ActionIconButton({
-    required this.icon,
-    required this.onTap,
-  });
+  const _ActionIconButton({required this.icon, required this.onTap});
 
   final IconData icon;
   final VoidCallback onTap;
@@ -271,7 +230,11 @@ class _ActionIconButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(999),
       child: Padding(
         padding: const EdgeInsets.all(6),
-        child: Icon(icon, size: 20, color: Theme.of(context).colorScheme.primary),
+        child: Icon(
+          icon,
+          size: 20,
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
     );
   }

@@ -9,12 +9,11 @@ lib/
 ├── injection_container.dart# 依赖注入 (DI) 中心：管理 Service Locator (如 GetIt)
 │
 ├── core/                   # 核心基础层：与业务逻辑无关的通用代码
-│   ├── api/                # API 客户端封装 (Dio 拦截器、BaseURL 配置)
 │   ├── common/             # 全局通用组件 (ResponsiveLayout, CommonButton 等)
 │   ├── constants/          # 全局常量 (AppKeys, AssetPaths, Endpoints)
 │   ├── error/              # 异常处理模型 (Failures, Exceptions)
 │   ├── theme/              # 全局设计系统 (FlexColorScheme, TextTheme, 响应式间距)
-│   └── utils/              # 纯函数工具类 (Validators, Formatters, PlatformInfo)
+│   └── utils/              # 工具与基础能力 (Validators, Formatters, PlatformInfo, Network)
 │
 ├── features/               # 业务特性层：按功能模块划分 (Feature-First)
 │   ├── auth/               # 示例：身份认证模块 (登录、权限校验)
@@ -47,7 +46,7 @@ lib/
 
 ### 核心层 (Core)
 
-- **`core/api/`**: 这里是你作为后端开发最关注的地方。建议封装统一的 `ApiClient`，处理 JWT 自动刷新、PostgreSQL 错误码转义等逻辑。
+- **`core/utils/network/`**: 这里是你作为后端开发最关注的地方。建议封装统一的 `ApiClient`，处理 JWT 自动刷新、PostgreSQL 错误码转义等逻辑。
 - **`core/theme/`**: 全终端适配的关键。除了颜色，还需定义 `AppSpacing`（间距）和 `AppBreakpoints`（断点）。例如：Web 端侧边栏宽度、移动端底部导航栏高度。
 
 ### 特性层 (Features) - 遵循 Clean Architecture
