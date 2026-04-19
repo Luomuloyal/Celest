@@ -162,10 +162,10 @@ class _AppShellState extends State<AppShell> {
     if (path.startsWith(AppRoutes.competition.path)) {
       return 1;
     }
-    if (path.startsWith(AppRoutes.workspace.path) || path.startsWith('/dashboard')) {
+    if (path.startsWith(AppRoutes.workspace.path)) {
       return 2;
     }
-    if (path.startsWith(AppRoutes.resources.path) || path.startsWith('/team')) {
+    if (path.startsWith(AppRoutes.resources.path)) {
       return 3;
     }
     if (path.startsWith(AppRoutes.profile.path)) {

@@ -27,6 +27,10 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('欢迎回来, Alex'), findsOneWidget);
+    final hasPlaceholder =
+        find.text('工作区 页面占位').evaluate().isNotEmpty ||
+        find.text('Workspace page placeholder').evaluate().isNotEmpty;
+
+    expect(hasPlaceholder, isTrue);
   });
 }

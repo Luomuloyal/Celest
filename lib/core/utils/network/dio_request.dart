@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 
 import '../../constants/api_endpoints.dart';
 import '../../constants/app_timeouts.dart';
-import 'api_error_handler.dart';
-import 'interceptors/api_logging_interceptor.dart';
+import 'dio_error_handler.dart';
+import 'interceptors/dio_logging_interceptor.dart';
 import 'interceptors/auth_interceptor.dart';
 
 class ApiClient {

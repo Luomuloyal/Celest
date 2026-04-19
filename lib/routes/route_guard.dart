@@ -13,14 +13,6 @@ class RouteGuard {
       return AppRoutes.workspace.path;
     }
 
-    if (path == '/dashboard') {
-      return AppRoutes.workspace.path;
-    }
-
-    if (path == '/team') {
-      return AppRoutes.resources.path;
-    }
-
     return null;
   }
 }
